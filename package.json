@@ -1,0 +1,15 @@
+{
+  "name": "TRAppCore",
+  "description": "TR Application Core",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-requirejs":"*",
+    "grunt-contrib-concat":"*",
+    "grunt-contrib-watch":"*",
+    "grunt-contrib-connect":"*",
+    "grunt-contrib-less":"*",
+    "grunt-contrib-copy":"*",
+    "grunt-contrib-clean":"*"
+  }
+}

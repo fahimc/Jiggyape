@@ -1,0 +1,84 @@
+.style(accordion){
+	& > .ui-accordion-header {
+		.style(accordionHeading);
+		.content > & {
+			margin:-1px -1px 0 -1px;
+		}
+
+		&:hover, &:active {
+			color: @white;
+		}
+
+		& > .ui-accordion-header-icon {
+			&.ui-icon-triangle-1-e {
+				float: left;
+				display: inline-block;
+				content: " ";
+				width: 0;
+				height: 0;
+				vertical-align: middle;
+				border-top: 4px solid rgba(0, 0, 0, 0);
+				border-bottom: 4px solid rgba(0, 0, 0, 0);
+				border-left: 6px solid #767676;
+				margin-right: 12px;
+				margin-top: 11px;
+			}
+			&.ui-icon-triangle-1-s {
+				float: left;
+				display: inline-block;
+				content: " ";
+				width: 0;
+				height: 0;
+				vertical-align: middle;
+				border-left: 4px solid rgba(0, 0, 0, 0);
+				border-right: 4px solid rgba(0, 0, 0, 0);
+				border-top: 6px solid #767676;
+				margin-right: 10px;
+				margin-top: 11px;
+			}
+		}
+		@media print {
+			background: @bgPrint1 !important;
+			border-bottom:solid 1px @borderPrint1;
+			.printColor;
+			color:@textColorPrint;
+		}
+	}
+
+	& > .ui-accordion-content {
+		.style(accordionContent);
+
+
+		li:not(:last-child){
+
+
+		}
+		li:hover
+		{
+			background-color: @grey05;
+			color:@white;
+		}
+
+	}
+}
+.style(accordionHeading){
+	background-color:darken( @grey06, 8%);
+	font-weight:bold;
+	text-transform: uppercase;
+	padding-left: 8px;
+	font-size: (@fontSize - 2 );
+	color: @textMenuColor2;
+	cursor: default;
+	line-height:32px;
+	border-bottom: 1px solid @grey11;
+}
+.style(accordionContent){
+	background-color: @grey10;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	overflow:auto;
+	li {
+		padding-left: 44px;
+		padding-right: 20px;
+	}
+}

@@ -1,0 +1,60 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+.header-title-banner {
+	.grad-overlay-02;
+	position: relative;
+	background-color: @grey06;
+	height: 29px;
+	min-height: 29px;
+	line-height: 28px;
+	font-size: @fontSize;
+	box-sizing: border-box;
+
+	@media print {
+		border-color: @borderPrintZero;
+	}
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.header-title-banner { line-height: 25px; }
+}
+
+.page-title {
+	&-container {
+		color          : @grey01;
+		font-size      : @fontSize;
+		font-weight    : bold;
+		text-transform : uppercase;
+		vertical-align : middle;
+		padding        : 0 @spacerSections;
+		display        : inline-block;
+
+		SPAN {
+			display:inline-block;
+		}
+		@media print {
+			color:@textColorPrint;
+		}
+	}
+	&-item {
+		display: inline-block;
+		vertical-align: middle;
+		padding-right: 5px;
+	}
+	&-sub {
+		color: @orange;
+	}
+	&-item-right {
+		float: right;
+		padding: 0 20px 0 8px;
+	}
+	@media print {
+		&-container {
+			color: @textColorPrint;
+		}
+		&-sub {
+			color: @textColorPrint;
+		}
+	}
+}

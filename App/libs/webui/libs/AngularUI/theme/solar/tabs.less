@@ -1,0 +1,122 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+@import "../../../Typography/theme/@{schema}/typography";
+
+.nav-tabs {
+	white-space:nowrap;
+	font-size:0;
+	display:inline-block;
+
+	& > LI {
+		display:inline-block;
+		& > A {
+			.style(button);
+			font-size: @fontSize;
+			display:inline-block;
+			padding:3px 8px;
+			border-right-width:0;
+			cursor:pointer;
+
+		}
+
+		&:last-child > A {
+			border-right-width:1px;
+		}
+
+		&.disabled > A {
+			opacity: 0.4;
+			cursor: default;
+
+			// // TODO: Hack fix it
+			// &:hover, &:active {
+			// 	opacity: 0.4;
+			// 	color: @control-txt !important;
+			// 	background-color: @WEBUI-btn-bg !important;
+			// 	.grad-overlay-01 !important;
+			// }
+		}
+
+		&:not(.disabled).active > A {
+			color: @orange;
+			.grad-overlay-03;
+			background-color: @WEBUI-btn-bg !important;
+
+			// TODO: Hack fix it
+			&:hover {
+				color: @orange !important;
+			}
+		}
+
+	}
+
+	&.nav-justified {
+		width:100%;
+		display:table;
+		& > LI {
+			display:table-cell;
+			width:1%;
+			& > A {
+				box-sizing:border-box;
+				width:100%;
+				text-align:center;
+			}
+		}
+	}
+}
+
+.nav-pills {
+	.panelStyle();
+	& > LI {
+		& > A {
+			display:block;
+			font-size: @fontSize;
+			padding:8px;
+			cursor:pointer;
+			color:@textColor;
+			border-top: solid 1px @borderColor1;
+			border-bottom: solid 1px @borderColor2;
+			background-color:@bgTableRow2;
+
+			&:hover {
+				color:@textColorZero;
+				outline: none;
+			}
+		}
+		&:first-child > A {
+			border-top:0;
+		}
+
+		&:last-child > A {
+			border-bottom:0;
+		}
+		&.active > A {
+			color:@textColor4;
+			background-color:@bgTableRow1;
+		}
+	}
+	@media print {
+		border:solid 1px @borderPrint1;
+		& > LI {
+			& > A {
+				border:0;
+				border-bottom: solid 1px @borderPrint1;
+				color:@textColorPrint;
+			}
+			&.active > A {
+				color:@textColorPrint;
+				background-color:@bgPrint1;
+				.printColor;
+			}
+		}
+	}
+}
+
+.tab-pane {
+	display:none;
+	&.active {
+		display:block;
+	}
+}
+
+
+

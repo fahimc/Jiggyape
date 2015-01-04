@@ -1,0 +1,23 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+TEXTAREA {
+
+	.style(textfield);
+	.layout(textfield);
+
+	outline: none;
+	resize: none;
+	width: 100%;
+	height:auto;
+	line-height:auto;
+	padding: 5px;
+	overflow: auto;
+
+
+	@media print {
+		border:solid 1px @borderPrint1;
+		.border-radius(0);
+		color:@textColorPrint;
+	}
+}

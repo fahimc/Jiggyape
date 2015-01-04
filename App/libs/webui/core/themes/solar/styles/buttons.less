@@ -1,0 +1,121 @@
+// Base button style
+.style (button, @base: @WEBUI-btn-bg) {
+  .variables(button, @base);
+  .transition;
+  // .grad-overlay-01;
+  .gradient( @_backgroundImage);
+  .shadow(@_boxShadow);
+  font-weight: @_fontWeight;
+  cursor: @_cursor;
+  background-color: @_backgroundColor;
+  border: @_border;
+  border-radius: @_borderRadius;
+  font-family: @fontDefault;
+  box-sizing: @_boxSizing;
+  color: @_color;
+
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):hover {
+    .style(button-hover, @base);
+  }
+
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):active {
+    .style(button-active, @base);
+  }
+
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):focus {
+    .style(button-focus, @base);
+  }
+
+  &.disabled, &[disabled], {
+    .style(button-disabled, @base);
+  }
+
+  &.icon {
+    .icon;
+    color: @_color;
+  }
+
+  @media print {
+    .print;
+    .border-radius(@_borderRadius);
+    border: @_border;
+    color: @_color !important;
+    background: @_background !important;
+    .printColor();
+    &.disabled, &[disabled] {
+      .disabled;
+      color: @_color !important;
+    }
+  }
+}
+
+
+// Disabled button style
+.style(button-normal, @base: @WEBUI-btn-bg) {
+  .variables(button, @base);
+  & {
+    .transition;
+    .grad-overlay-01;
+    .shadow(@_boxShadow);
+    font-weight: @_fontWeight;
+    cursor: @_cursor;
+    background-color: @_backgroundColor;
+    border: @_border;
+    border-radius: @_borderRadius;
+    font-family: @fontDefault;
+    box-sizing: @_boxSizing;
+    color: @_color;
+  }
+}
+
+// Disabled button style
+.style(button-disabled, @base: @WEBUI-btn-bg) {
+  .variables(button, @base);
+  &,
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):hover,
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):active
+  {
+    .disabled;
+    cursor: @_cursor;
+    opacity: @_opacity;
+    outline: @_outline;
+    .grad-overlay-01 !important;
+    background-color: @_backgroundColor !important;
+    color: @_color !important;
+  }
+}
+
+// Focused button style
+.style(button-focus, @base: @WEBUI-btn-bg) {
+  .variables(button, @base);
+  & {
+    .focus;
+    border: @_border;
+    outline: @_outline;
+  }
+}
+
+// Hover button style
+.style(button-hover, @base: @WEBUI-btn-bg) {
+  .variables(button, @base);
+  & {
+    .hover;
+    color: @_color;
+    background-color: @_backgroundColor;
+  }
+}
+
+// Active button style
+.style(button-active, @base: @WEBUI-btn-bg) {
+  .variables(button, @base);
+  &,
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):hover,
+  &:not(.disabled):not([disabled]):not([size]):not(.disabled-item):active
+  {
+    .active;
+    .grad-overlay-03;
+    .shadow(@_boxShadow);
+    color: @_color;
+    background-color: @_backgroundColor;
+  }
+}

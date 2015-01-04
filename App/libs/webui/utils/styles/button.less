@@ -1,0 +1,56 @@
+
+/* ---------------------- LEGACY ---------------------- */
+
+
+.buttonStyle () when (@schema = @old_schema) {
+    .gradientLine(top, @bgButtonColor1 0%, @bgButtonColor2);
+    background-color: @bgColorZero;
+    border: solid 1px @borderControl;
+    color: @textControlColor;
+    .shadow(inset 0 1px 0 0 @shadowButtonColor1, inset 0 0 2px 0 (@shadowButtonColor1 + rgba(0, 0, 0, .1)));
+    @media print {
+        color: @textColorPrint !important;
+        border: solid 1px @borderPrint1;
+    }
+}
+
+.buttonStyleHover () when (@schema = @old_schema) {
+    color: @textControlActiveColor;
+}
+
+.buttonStyleFocus () when (@schema = @old_schema) {
+    .shadow(inset 0 1px 0 0 @shadowButtonColor1, inset 0 0 2px 0 (@shadowButtonColor1 + rgba(0, 0, 0, .1)), 0px 0px 1px 0 @bgControlActive);
+}
+
+.buttonStyleActive () when (@schema = @old_schema) {
+    color: @colorButtonActive;
+    .gradientLine(top, @shadowButtonColor2 0%, @shadowButtonColor3);
+    background-color: @bgColorZero;
+    @media print {
+        background: @bgPrint1 !important;
+        .printColor;
+    }
+}
+
+.buttonStyle2 () when (@schema = @old_schema) {
+    background-color: @bgColor2;
+    border: solid 1px @borderControl;
+    .shadow(inset 0 -1px 0 0 @shadowButtonColor1, inset 0 0 2px 0 (@shadowButtonColor1 + rgba(0, 0, 0, .1)));
+}
+
+.buttonResetStyle () {
+    background: transparent;
+    border: 0;
+    color: @textColor;
+    .shadow(0 0 0);
+    &:hover,
+    &:active,
+    &:focus {
+        background: transparent;
+        border: 0;
+        color: @textColor;
+    }
+}
+
+
+/* ---------------------- LEGACY END ---------------------- */

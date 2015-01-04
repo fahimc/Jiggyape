@@ -1,0 +1,183 @@
+// User Select
+.userSelect(@userSelect: none) {
+	-webkit-user-select: @userSelect;
+	-moz-user-select: @userSelect;
+	user-select: @userSelect;
+}
+
+// Rounded Corners
+.border-radius(@radius: 3px) {
+	border-radius: @radius;
+}
+.border-top-left-radius(@radius: 3px) {
+	border-top-left-radius: @radius;
+}
+.border-top-right-radius(@radius: 3px) {
+	border-top-right-radius: @radius;
+}
+.border-bottom-left-radius(@radius: 3px) {
+	border-bottom-left-radius: @radius;
+}
+.border-bottom-right-radius(@radius: 3px) {
+	border-bottom-right-radius: @radius;
+}
+
+.linear-gradient(@options) {
+	background-image: -webkit-linear-gradient(@options);
+	background-image: -moz-linear-gradient(@options);
+	background-image: -ms-linear-gradient(@options);
+	background-image: -o-linear-gradient(@options);
+}
+
+.linear-gradient(@imageUrl, @options) {
+	background-image: url(@imageUrl), -webkit-linear-gradient(@options);
+	background-image: url(@imageUrl), -moz-linear-gradient(@options);
+	background-image: url(@imageUrl), -ms-linear-gradient(@options);
+	background-image: url(@imageUrl), -o-linear-gradient(@options);
+}
+
+// gradient
+.gradientLine(@origin: left, @startColor: #000, @stopColor: #000) {
+    background-color: @stopColor;
+    background-image: -webkit-linear-gradient(@origin, @startColor, @stopColor);
+    background-image: -moz-linear-gradient(@origin, @startColor, @stopColor);
+    background-image: -o-linear-gradient(@origin, @startColor, @stopColor);
+    background-image: -ms-linear-gradient(@origin, @startColor, @stopColor);
+    background-image: linear-gradient(@origin, @startColor, @stopColor);
+}
+
+.gradientLine(@origin, @startColor, @middleColor, @middleStop, @stopColor) {
+	background-color: @stopColor;
+	background-image:-webkit-linear-gradient(@origin, @startColor 0%, @middleColor @middleStop, @stopColor 100%);
+	background-image: -moz-linear-gradient(@origin, @startColor 0%, @middleColor @middleStop, @stopColor 100%);
+    background-image: -o-linear-gradient(@origin, @startColor 0%, @middleColor @middleStop, @stopColor 100%);
+    background-image: -ms-linear-gradient(@origin, @startColor 0%, @middleColor @middleStop, @stopColor 100%);
+    background-image: linear-gradient(@origin, @startColor 0%, @middleColor @middleStop, @stopColor 100%);
+}
+
+.gradientLine(@origin, @bgColor, @startColor, @middleColor1, @middleStop1, @middleColor2, @middleStop2, @middleColor3, @middleStop3, @stopColor) {
+	background-color: @bgColor;
+	background-image:-webkit-linear-gradient(@origin, @startColor 0%, @middleColor1 @middleStop1, @middleColor2 @middleStop2, @middleColor3 @middleStop3, @stopColor 100%);
+	background-image: -moz-linear-gradient(@origin, @startColor 0%, @middleColor1 @middleStop1, @middleColor2 @middleStop2, @middleColor3 @middleStop3, @stopColor 100%);
+    background-image: -o-linear-gradient(@origin, @startColor 0%, @middleColor1 @middleStop1, @middleColor2 @middleStop2, @middleColor3 @middleStop3, @stopColor 100%);
+    background-image: -ms-linear-gradient(@origin, @startColor 0%, @middleColor1 @middleStop1, @middleColor2 @middleStop2, @middleColor3 @middleStop3, @stopColor 100%);
+    background-image: linear-gradient(@origin, @startColor 0%, @middleColor1 @middleStop1, @middleColor2 @middleStop2, @middleColor3 @middleStop3, @stopColor 100%);
+}
+
+// shadow
+.shadow(@shadow1: 0px 0px 5px 0px rgba(0, 0, 0, 0.6)) {
+    -webkit-box-shadow: @shadow1;
+    -moz-box-shadow: @shadow1;
+    box-shadow: @shadow1;
+}
+
+.shadow(@shadow1, @shadow2) {
+    -webkit-box-shadow: @shadow1, @shadow2;
+    -moz-box-shadow: @shadow1, @shadow2;
+    box-shadow: @shadow1, @shadow2;
+}
+
+.shadow(@shadow1, @shadow2, @shadow3) {
+    -webkit-box-shadow: @shadow1, @shadow2, @shadow3;
+    -moz-box-shadow: @shadow1, @shadow2, @shadow3;
+    box-shadow: @shadow1, @shadow2, @shadow3;
+}
+
+.shadow(@shadow1, @shadow2, @shadow3, @shadow4) {
+    -webkit-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
+    -moz-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
+    box-shadow: @shadow1, @shadow2, @shadow3, @shadow4;
+}
+
+.shadow(@shadow1, @shadow2, @shadow3, @shadow4, @shadow5) {
+    -webkit-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5;
+    -moz-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5;
+    box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5;
+}
+.shadow(@shadow1, @shadow2, @shadow3, @shadow4, @shadow5, @shadow6) {
+    -webkit-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5, @shadow6;
+    -moz-box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5, @shadow6;
+    box-shadow: @shadow1, @shadow2, @shadow3, @shadow4, @shadow5, @shadow6;
+}
+
+// background image
+
+// text align
+
+// Link color (default, hover, active)
+.linkColor(@default, @hover){
+	color: @default;
+	&:hover {
+		color: @hover;
+	};
+}
+
+.linkColor(@default, @hover, @active){
+	color: @default;
+	&:hover {
+		color: @hover;
+	};
+	&:active {
+		color: @active;
+	}
+}
+
+// transition
+.transition(@value: all 0.1s ease-out) {
+	-webkit-transition: @value;
+	-moz-transition: @value;
+	-o-transition: @value;
+	transition: @value;
+}
+
+// Flex
+	.flexDisplay () {
+		display:-webkit-flex;
+		display:-ms-flexbox;
+		display:flex;
+	}
+	.flexAlign (@value: stretch) {
+		-webkit-align-items:@value;
+		-ms-flex-align:@value;
+		align-items:@value;
+	}
+	.flexFlow (@value: column) {
+		-webkit-flex-flow: @value;
+		-ms-flex-direction: @value;
+		flex-flow: @value;
+	}
+	.flexGrow (@value: 1) {
+		-webkit-flex-grow:@value;
+		-ms-flex-positive:@value;
+		flex-grow:@value;
+	}
+	.flex (@grow: 1, @shrink: 1, @basis: auto) {
+		-webkit-flex: @grow @shrink @basis;
+		-ms-flex: @grow @shrink @basis;
+		flex: @grow @shrink @basis;
+	}
+
+// appearance
+	.appearance(@value: none) {
+		-webkit-appearance:@value;
+		-moz-appearance:@value;
+		appearance:@value;
+	}
+
+//animation
+	.animation (@name, @duration: 1s, @count: infinite, @function: linear){
+		-webkit-animation-name: @name;
+		-webkit-animation-duration: @duration;
+		-webkit-animation-iteration-count: @count;
+		-webkit-animation-timing-function: @function;
+	}
+
+//transform
+	.transform (@value) {
+		-webkit-transform: @value;
+		transform: @value;
+	}
+//print
+	.printColor(@value:exact){
+		-webkit-print-color-adjust: @value;
+	}

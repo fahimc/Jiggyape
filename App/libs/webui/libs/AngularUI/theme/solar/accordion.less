@@ -1,0 +1,94 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/styles/accordion.less";
+@import "../../../Typography/theme/@{schema}/typography";
+
+@import "collapse.less";
+
+.ng-scope {
+	ACCORDION .panel {
+		&-group {
+
+			.panel-heading {
+				background-color: @grey07;
+				font-weight: bold;
+				text-transform: uppercase;
+				padding-left: 8px;
+				font-size: (@fontSize - 2);
+				color: @text-default;
+				cursor: default;
+				height: 27px;
+				line-height: 29px;
+				border-bottom: 1px solid @grey10;
+
+				&:hover, &:active {
+				  color: @white;
+				}
+
+				.panel-title {
+					font-size: (@fontSize - 2);
+					margin: 0;
+					line-height: inherit;
+
+					a {
+						color: inherit;
+						display: block;
+
+						.ewui-icon-arrow {
+							width: 0;
+							height: 0;
+							float: left;
+							display: inline-block;
+							content: " ";
+							vertical-align: middle;
+                          &:before {
+                            content: "" !important;
+                          }
+
+							&.icon-arrow-right {
+								border-top: 4px solid rgba(0, 0, 0, 0);
+								border-bottom: 4px solid rgba(0, 0, 0, 0);
+								border-left: 6px solid #767676;
+								margin-right: 12px;
+								margin-top: 10px;
+							}
+							&.icon-arrow-down {
+								border-left: 4px solid rgba(0, 0, 0, 0);
+								border-right: 4px solid rgba(0, 0, 0, 0);
+								border-top: 6px solid #767676;
+								margin-right: 10px;
+								margin-top: 11px;
+							}
+						}
+
+					}
+				}
+			}
+
+			.panel-body {
+				background-color: @grey10;
+				overflow: auto;
+
+				a {
+					display: block;
+					line-height: 32px;
+					height: 32px;
+					padding: 0 10px 0 25px;
+					cursor: pointer;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					color: #bfbfbf;
+
+					&:hover {
+						color: @white;
+					}
+				}
+			}
+		}
+
+		&:last-child .panel-body {
+			border-bottom:solid 1px @shadowMenuColor1;
+		}
+
+	}
+}

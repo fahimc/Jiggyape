@@ -1,0 +1,30 @@
+.style (input) {
+
+  .variables(input);
+
+	.appearance;
+  color: @control-txt;
+  background: @WEBUI-input-bg;
+  border: 1px solid @WEBUI-input-border;
+  font-family: inherit;
+
+  &:not([disabled]) {
+    &:active, &:hover {
+      border-color: @WEBUI-input-border-hover;
+      color: @grey01;
+    }
+    &:focus {
+      .focus;
+      border: @_border;
+      outline: @_outline;
+    }
+  }
+
+  &::-webkit-input-placeholder {
+   color: @grey04;
+  }
+
+  &[disabled] {
+  	opacity: 0.4;
+  }
+}

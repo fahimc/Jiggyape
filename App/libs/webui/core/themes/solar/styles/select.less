@@ -1,0 +1,62 @@
+.style (select) {
+
+	.style(button); // include button style
+  .transition(none);
+  .appearance;
+
+  transition: background-color 0.1s ease-out, color 0.1s ease-out;
+  -webkit-transition: background-color 0.1s ease-out, color 0.1s ease-out;
+
+  .linear-gradient("@{imageLocation}/@{schema}/select_arrow.png"; top, fade(@white, 10%) 0%, fade(@white, 0) 100%) !important;
+  background-repeat: no-repeat;
+  background-position: -webkit-calc(100% - 4px) 4px, 0 0;
+  background-position: calc(100% - 4px) 4px, 0 0;
+
+
+  /* IE (Remove Arrow)
+  ----------------------------*/
+  &::-ms-expand {
+    display: none;
+  }
+  /*--------------------------*/
+
+  /* Firfox hack (Remove Arrow)
+  ----------------------------*/
+  text-indent: 0.01px;
+  text-overflow: "";
+  /*--------------------------*/
+
+
+  &:not([disabled]):hover, &:not([disabled]):focus {
+    background-position: -webkit-calc(100% - 4px) -11px, 0 0 !important;
+    background-position: calc(100% - 4px) -11px, 0 0 !important;
+  }
+
+  &:not([disabled]):active {
+    .linear-gradient("@{imageLocation}/@{schema}/select_arrow.png"; top, fade(@black, 10%) 0%, fade(@black, 0) 100%) !important;
+    background-position: -webkit-calc(100% - 4px) 4px, 0 0 !important;
+    background-position: calc(100% - 4px) 4px, 0 0 !important;
+  }
+
+  &[disabled] {
+    .linear-gradient("@{imageLocation}/@{schema}/select_arrow.png"; top, fade(@white, 10%) 0%, fade(@white, 0) 100%) !important;
+    background-repeat: no-repeat;
+    background-position: -webkit-calc(100% - 4px) 4px, 0 0;
+    background-position: calc(100% - 4px) 4px, 0 0;
+    opacity: 0.4;
+  }
+
+	OPTION, OPTGROUP {
+		background-color: @grey05;
+		color: @textColor;
+
+		&:hover {
+			background-color: @grey04;
+      color: @white;
+		}
+	}
+
+  &[size], &[size]:hover {
+    background-image: none;
+  }
+}

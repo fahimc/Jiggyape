@@ -1,0 +1,131 @@
+@import "../../../../core/webui.less";
+
+
+/* LEGACY START */
+
+.loading-indicator {
+  position: absolute;
+  z-index: 10;
+  cursor: wait;
+
+  DIV {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: @grey10;
+    opacity: 0.4;
+  }
+
+  SPAN {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    right: 50%;
+    font-size: 0;
+  }
+}
+
+.b-icon-loading {
+  &-12{
+    .throbber-mini;
+  }
+  &-16{
+    .throbber-mini;
+  }
+  &-20{
+    .throbber;
+  }
+}
+
+/* LEGACY END */
+
+
+@throbber-highlight-color: @grey01;
+
+// @throbber-color: lighten(orange, 10%);
+@throbber-color: @grey01;
+@throbber-segment-width: 15px;
+@throbber-height: @throbber-segment-width;
+@throbber-spacing: 13px;
+
+@throbber-color-mini: transparent;
+@throbber-segment-width-mini: 2px;
+@throbber-height-mini: @throbber-segment-width-mini;
+@throbber-spacing-mini: 8px;
+
+
+
+@-webkit-keyframes throbber {
+  0% {
+    background: transparent;
+    // border-width: 1px;
+  }
+  20% {
+    background: @throbber-highlight-color;
+  }
+}
+
+.throbber {
+  -webkit-animation: throbber 1250ms 500ms infinite ease-out;
+  border: 2px solid @throbber-color;
+  display: inline-block;
+  position: relative;
+  text-indent: -9999px;
+  width: @throbber-segment-width;
+  height: @throbber-height;
+  margin: 0 (@throbber-segment-width + @throbber-spacing);
+  border-radius: 50px;
+
+  &:before, &:after {
+    // background: @throbber-color;
+    border: 2px solid @throbber-color;
+    content: '\x200B';
+    display: inline-block;
+    width: @throbber-segment-width;
+    height: @throbber-height;
+    position: absolute;
+    top: -2px;
+    border-radius: 50px;
+  }
+  &:before {
+    -webkit-animation: throbber 1250ms 250ms infinite ease-out;
+    left: (-1 * (@throbber-segment-width + @throbber-spacing));
+  }
+  &:after {
+    -webkit-animation: throbber 1250ms 750ms infinite ease-out;
+    right: (-1 * (@throbber-segment-width + @throbber-spacing));
+  }
+}
+
+.throbber-mini {
+  -webkit-animation: throbber 1250ms 500ms infinite ease-out;
+  border: 1px solid @throbber-color-mini;
+  display: inline-block;
+  position: relative;
+  text-indent: -9999px;
+  width: @throbber-segment-width-mini;
+  height: @throbber-height-mini;
+  margin: 0 (@throbber-segment-width-mini + @throbber-spacing-mini);
+  border-radius: 50px;
+
+  &:before, &:after {
+    // background: @throbber-color;
+    border: 1px solid @throbber-color-mini;
+    content: '\x200B';
+    display: inline-block;
+    width: @throbber-segment-width-mini;
+    height: @throbber-height-mini;
+    position: absolute;
+    top: -1px;
+    border-radius: 50px;
+  }
+  &:before {
+    -webkit-animation: throbber 1250ms 250ms infinite ease-out;
+    left: (-1 * (@throbber-segment-width-mini + @throbber-spacing-mini));
+  }
+  &:after {
+    -webkit-animation: throbber 1250ms 750ms infinite ease-out;
+    right: (-1 * (@throbber-segment-width-mini + @throbber-spacing-mini));
+  }
+}

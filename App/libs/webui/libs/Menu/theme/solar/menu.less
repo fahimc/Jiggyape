@@ -1,0 +1,86 @@
+@import "../../../../core/webui.less";
+
+.menu-element {
+    background-color: @grey10;
+    display: inline-block;
+    font-size: (@fontSize - 2);
+    font-weight: bold;
+    .menu-first-lv-item {
+
+        border-bottom: 1px solid @grey10;
+
+        // &:last-child {
+        //     border-bottom: none;
+        // }
+
+        A {
+            line-height: 27px;
+            height: 27px;
+            padding: 0 10px 0 25px;
+            cursor: pointer;
+            overflow: hidden;
+            display: block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: @textMenuColor1;
+            &:hover,
+            &:active {
+                color: @textMenuHoverColor1;
+            }
+            &.menu-selected {
+                color: @textColor4;
+                font-weight: bold;
+            }
+        }
+        &:first-child {
+            .menu-first-lv-link {
+                // .border-top-left-radius();
+                // .border-top-right-radius();
+            }
+        }
+        .menu-first-lv-link {
+            background-color: @grey07;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-left: 15px;
+            color: @textMenuColor2;
+            cursor: default;
+            &:hover,
+            &:active {
+                color: @textMenuHoverColor2;
+            }
+        }
+        .menu-second-lv {
+        }
+        .menu-second-lv-link {
+            text-transform: uppercase;
+        }
+        .menu-third-lv-link {
+            padding: 0 5px 0 30px;
+            border: solid 1px rgba(0, 0, 0, 0);
+            border-width: 0 1px;
+            text-transform: uppercase;
+        }
+        .menu-third-lv {
+            margin-left: 10px;
+        }
+    }
+    @media print {
+        background: @bgPrintZero;
+        border: solid 1px @borderPrintZero;
+        .menu-first-lv-item {
+            A{color: @textColorPrint;
+                border-bottom: solid 1px @borderPrint1;
+                &.menu-selected {
+                    background: @bgPrint1 !important;
+                    color: @textColorPrint;
+                }
+            }
+            .menu-first-lv-link {
+                background: @bgPrint1 !important;
+                color: @textColorPrint;
+                .printColor;
+            }
+        }
+    }
+}

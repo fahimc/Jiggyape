@@ -1,0 +1,61 @@
+.style (selecttree) {
+    position: relative;
+    z-index: 20;
+    .select-tree-status {
+        .style (select);
+        padding-left:5px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+    .select-content-expand {
+        .select-tree-content {
+            display:block;
+        }
+    }
+    .select-tree-content {
+        .panel;
+        display:none;
+        position:absolute;
+        margin-top:1px;
+        padding:1px;
+        .border-radius(0);
+        .select-tree-item {
+            display:block;
+            padding-top:2px;
+            padding-right:8px;
+            padding-bottom:2px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            box-sizing:border-box;
+            .checkbox {
+                margin-right:8px;
+            }
+            &.select-tree-level1
+            {
+                padding-left: 44px;
+                &:before {
+                left:26px;
+                }
+                &:after
+                {
+                    left:28px;
+                }
+            }
+            &:hover {
+                background-color: saturate(lighten(@grey06, 4%), 1%);
+                color:@text-hover;
+            }
+            input[value="1"] {
+                color:#ff0;
+            }
+            &:before
+            {
+                left: 8px;
+            }
+            &:after
+            {
+                left: 10px;
+            }
+        }
+    }
+}

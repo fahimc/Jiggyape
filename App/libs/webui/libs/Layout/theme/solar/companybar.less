@@ -1,0 +1,41 @@
+@import "../../../../core/webui.less";
+@import "titlebar";
+@import "../../../Icons/theme/@{schema}/icons_all";
+@import "../../../Typography/theme/@{schema}/typography";
+@import "contentblock";
+
+.colorBlock-companybar {
+
+  .colorBlock-header2;
+
+  .transform-none {
+    text-transform: none;
+  }
+
+  overflow:hidden;
+
+  background: @black;
+  border-top: solid 1px @grey06;
+
+  // .grad-overlay-01;
+
+  .colorBlock-header-span {
+    color: @grey04;
+  }
+
+  .icon-fix, [class^="icon-"], [class*=" icon-"] {
+    position: relative;
+    top: 2px;
+  }
+
+  .colorBlock-header-span {
+    padding-right: 2px;
+
+    span:not(:last-of-type):not(:first-of-type):after {
+      content: '|';
+      padding: 0 3px 0 5px;
+      color: @grey04;
+      text-shadow: none;
+    }
+  }
+}

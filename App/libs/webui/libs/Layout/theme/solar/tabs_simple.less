@@ -1,0 +1,38 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+.tabs-simple-wr {
+	white-space: nowrap;
+	font-size: 0;
+	display: inline-block;
+
+	.tabs-simple-item {
+
+		.style(button);
+		.layout(button);
+
+		font-size: @fontSize;
+		display: inline-block;
+		border-right-width: 0;
+		line-height: 21px;
+
+		&:last-child {
+			border-right-width: 1px;
+		}
+
+		&.disabled-item {
+			.style(buttonDisabled)
+		}
+
+		&:not(.disabled-item):active, &.active-item {
+			color: @orange !important;
+			.grad-overlay-03;
+			background-color: @WEBUI-btn-bg !important;
+			@media print {
+				background: @bgPrint1 !important;
+				.printColor;
+			}
+
+		}
+	}
+}

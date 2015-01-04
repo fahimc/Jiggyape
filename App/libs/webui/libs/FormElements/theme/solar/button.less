@@ -1,0 +1,19 @@
+@import "../../../../core/webui.less";
+@import "../../../Icons/theme/@{schema}/icons_all";
+
+BUTTON,
+	INPUT[type="button"],
+	INPUT[type="submit"] {
+		.layout(button);
+		.style(button);
+
+		&.cta {
+			.style(button, @orange);
+		}
+		&.button-alt1 {
+			.style(button, @bgButtonAlt1_1);
+		}
+		&.button-alt2 {
+			.style(button, @bgButtonAlt2_1);
+		}
+	}

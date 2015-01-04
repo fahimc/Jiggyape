@@ -1,0 +1,124 @@
+@import "../../../../core/webui.less";
+
+.l-table {
+  display: table;
+  font-size: @fontSize !important;
+
+  & > .l-table-row {
+    display: table-row;
+    & > .l-table-cell {
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+
+  &.s-table0 {
+    & > .l-table-row{
+      & > .l-table-cell {
+        vertical-align: middle;
+        padding: 4px 8px;
+      }
+    }
+  }
+
+  &.s-table1 {
+    & > .l-table-row{
+      & > .l-table-cell {
+        vertical-align: middle;
+        padding: 2px 8px;
+        height:32px;
+      }
+    }
+  }
+
+  &.s-table2 {
+    border: solid 1px @borderSTable2Color1;
+    box-sizing: border-box;
+
+    & > .l-table-row{
+      & >.l-table-cell {
+        vertical-align: middle;
+        padding: 4px 8px;
+        border-bottom: solid 1px @borderColor3;
+        border-top: solid 1px @borderColor2;
+        background-color: @bgColor1;
+        &.cell-color1 {
+          background-color:@bgTableHeader;
+          border-right:solid 1px @borderColor2;
+          @media print {
+            border-right-color:@borderPrint1;
+          }
+        }
+      }
+      &:first-child > .l-table-cell {
+        border-top: 0;
+      }
+      &:last-child > .l-table-cell {
+        border-bottom: 0;
+      }
+    }
+
+    // &.row-highlight > .l-table-row{
+    //   &:not(.s-header-row):hover >.l-table-cell {
+    //     background-color:@bgTableCellActive;
+    //     color:@textColorZero;
+    //   }
+    // }
+
+    .l-table-row{
+      &:not(.s-header-row):hover >.l-table-cell {
+        background-color:@bgTableCellActive;
+        color:@textColorZero;
+      }
+    }
+
+  }
+
+  &.s-table3 {
+    width:100%;
+    border-collapse: collapse;
+
+    & > .l-table-row {
+      &.s-header-row {
+        & > .l-table-cell {
+          background-color: @grey08;
+          color: @grey03;
+          font-weight: bold;
+        }
+      }
+
+      & > .l-table-cell {
+        padding:5px 4px;
+        border: 1px solid @grey11;
+        background-color: @grey10;
+      }
+    }
+
+    .l-table-row{
+      &:not(.s-header-row):hover > .l-table-cell {
+        background-color:@grey08;
+        color: @text-hover;
+      }
+    }
+  }
+
+  &.table-bordered > .l-table-row > .l-table-cell:not(:last-child) {
+    border-right: 1px solid @borderColor2;
+    @media print {
+      border-right: 1px solid @borderPrint1;
+    }
+  }
+  @media print {
+    border-collapse:collapse;
+    &.s-table2, &.s-table3{
+      border-color:@borderPrint1 !important;
+      .l-table-cell {
+        border-bottom-color:@borderPrint1 !important;
+      }
+    }
+    .l-table-cell {
+      color:@textColorPrint !important;
+    }
+  }
+}
+

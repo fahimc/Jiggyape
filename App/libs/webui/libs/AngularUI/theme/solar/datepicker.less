@@ -1,0 +1,222 @@
+@import "../../../../core/webui.less";
+
+@import "../../../FormElements/theme/@{schema}/textfield.less";
+
+// .dateYPosition() when not (@schema = dark2) {
+// 	background-position: 100% -200px !important;
+// }
+
+.dateYPosition() when (@schema = dark2) {
+	background-position: 99% -198px !important;
+}
+
+INPUT.dt-popup-angularui{
+	/* Override webui style  as input as inline width*/
+	box-sizing: content-box;
+	/* Make height 23 px with border */
+	height: 21px;
+	padding-right:20px;
+
+	background-image: url("@{imageLocation}/@{schema}/calendar.png");
+	background-position: right 2px top 2px, 0 0;
+	background-position: -webkit-calc(100% - 2px) 2px, 0 0;
+	background-repeat: no-repeat;
+	cursor: pointer;
+
+	&:hover {
+		background-position: right 2px top -16px, 0 0;
+		background-position: -webkit-calc(100% - 2px) -17px, 0 0;
+	}
+
+	&:active, &:focus {
+		background-position: right 2px top -36px, 0 0;
+		background-position: -webkit-calc(100% - 2px) -36px, 0 0;
+	}
+
+	& + .dropdown-menu {
+		position:absolute;
+
+		& > LI:not(:first-child) {
+			display:none;
+		}
+	}
+}
+
+.dt-angularui, .dt-popup-angularui + .dropdown-menu {
+
+	.shadow;
+	display:inline-block;
+	padding: 8px;
+	border: solid 1px @black;
+	background-color: @grey06;
+	outline: 0;
+
+	BUTTON {
+		.style(button);
+		.layout(button);
+		margin: 0;
+		
+		&.pull-left,
+		&.pull-right {
+			width: @input-height;
+			height: 23px; // don't know where it needs to get the height val so hardcoding
+			float:left;
+			font-size:0px;
+			position: relative;
+			top: 0px;
+			text-indent: -9999px;
+			box-sizing: border-box;
+
+			&::after {
+				content: ' ';
+				width: 15px;
+				height: 15px;
+				display: inline-block;
+				position: absolute;
+				left: 3px;
+				top: 3px;
+			}
+			&:hover::after {
+				background-position:  0 -15px;
+			}
+
+			&:active::after {
+				background-position:  0 -30px;
+			}
+		}
+
+		&.pull-left {
+			&::after {
+				background-image:url("@{imageLocation}/@{schema}/select_arrow.png");
+				-webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+				transform: rotate(90deg);
+			}
+		}
+
+		&.pull-right {
+			float:right;
+			&::after {
+				background-image:url("@{imageLocation}/@{schema}/select_arrow.png");
+				-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+				transform: rotate(-90deg);
+			}
+		}
+	}
+
+	TABLE {
+		width: 210px;
+		table-layout: fixed;
+		border-collapse: collapse;
+		border-spacing: 0;
+		outline: none;
+	}
+
+	THEAD {
+		TR {
+			&:first-child > TH {
+				padding-bottom: 6px;
+				text-align: center;
+			}
+
+			&:last-child {
+				TH.ng-scope {
+					border: solid 1px @grey11; // design has #090909 so #0A0A0A (@grey11) will hardly be noticeable
+					background-color: @bgColor2;
+					color: @grey04;
+
+					font-size: 12px;
+					font-weight: normal;
+					height: 27px;
+					text-transform: uppercase;
+
+					@media print {
+						border-color: @borderPrint1 !important;
+					}
+				}
+			}
+		}
+	}
+
+	TBODY {
+		TD.ng-scope {
+			border: solid 1px @grey11; // design has #090909 so #0A0A0A (@grey11) will hardly be noticeable
+			padding: 0;
+
+			> BUTTON {
+				.buttonResetStyle;
+				padding: 0;
+				height: auto;
+
+				&:focus {
+					border: 0 !important;
+				}
+			}
+
+			.btn {
+
+				SPAN.ng-binding {
+					background-color: @grey08;
+					color: @grey02;
+					display: block;
+					font-size: 12px;
+					font-weight: normal;
+					text-align: center;
+					line-height: 27px;
+					height: 27px;
+					box-sizing: border-box;
+
+					&:hover {
+						color: @grey01;
+						background-color: @grey07;
+					}
+
+					&.text-muted{
+						background-color :@grey08;
+						color: @grey04;
+
+						&:hover {
+							color: @grey01;
+							background-color: @grey07;
+						}
+					}
+
+					@media print {
+						background-color: @bgPrintZero !important;
+						color: @textColorPrint;
+						
+						&.text-muted {
+							color: @textDisColorPrint;
+						}
+					}
+
+				} //SPAN.ng-binding
+
+				&.btn-info SPAN.ng-binding {
+					color: @grey11;
+					background-color: @orange;
+
+					@media print {
+						background-color:@bgPrint1 !important;
+						color:@textColorPrint;
+					}
+				}
+
+				&[disabled] {
+					SPAN.ng-binding {
+						color:@textColorDis;
+						@media print {
+							background-color: @bgPrintZero !important;
+							color: @textColorDis;
+						}
+					}
+				}
+
+
+			}
+			@media print {
+				border-color: @borderPrint1;
+			}
+		}
+	}
+
+}

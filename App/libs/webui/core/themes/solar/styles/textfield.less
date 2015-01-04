@@ -1,0 +1,30 @@
+.style (textfield) {
+
+	.style(input);
+
+	&.input-error {
+		border-color: @red;
+
+		&:not([disabled]):not(:focus):hover {
+			border-color: lighten(@red, 10%);
+		}
+	}
+
+	&.input-warning {
+		border-color: @orange;
+
+		&:not([disabled]):not(:focus):hover {
+			border-color: lighten(@orange, 10%);
+		}
+	}
+
+	@media print {
+		border: solid 1px @borderPrint1;
+		.border-radius(0);
+		color: @textColorPrint;
+		&::-webkit-input-placeholder {
+			color: @textDisColorPrint;
+		}
+	}
+
+}

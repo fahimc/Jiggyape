@@ -1,0 +1,26 @@
+@import "../../../../core/webui.less";
+@import "titlebar";
+@import "../../../Icons/theme/@{schema}/icons_all";
+@import "../../../Typography/theme/@{schema}/typography";
+@import "contentblock";
+
+.colorBlock-betabar {
+  overflow: hidden;
+  .colorBlock-header2;
+  background: @blue01;
+  border-top: solid 1px @black;
+  border-bottom: solid 1px @black;
+
+  .icon-fix, [class^="icon-"], [class*=" icon-"] {
+    position: relative;
+    top: 2px;
+  }
+
+  .colorBlock-header-span {
+    color: @blue;
+    background-color: lighten(@blue01, 10%);
+    vertical-align: inherit;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}

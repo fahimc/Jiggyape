@@ -1,0 +1,49 @@
+@import "../../../../core/webui.less";
+#EventContainer {
+	box-sizing:border-box;
+	width:auto;
+	min-width:@widthMinWindow;
+	// margin:0 @spacerSections @spacerSections;
+	// border:solid 1px @borderColorZero;
+	// box-shadow:inset 0px 0px -1px @borderColor2;
+	background-color:@grey11;
+}
+
+.flex-row, .flex-col {
+	.flexDisplay;
+	.flexAlign;
+}
+.flex-row {
+	.flexFlow(row);
+}
+.flex-col {
+	.flexFlow;
+}
+.flex-row > .flex-item {
+	width:0;
+}
+.flex-item {
+	box-sizing:border-box;
+	&.content {
+		min-height:150px;
+		min-width:200px;
+		margin: 0 0 1px 1px;
+	}
+}
+
+.flex-split1{.flexGrow;}
+.flex-split2{.flexGrow(2);}
+.flex-split3{.flexGrow(3);}
+.flex-split4{.flexGrow(4);}
+.flex-split5{.flexGrow(5);}
+.flex-split6{.flexGrow(6);}
+.flex-split7{.flexGrow(7);}
+.flex-split8{.flexGrow(8);}
+.flex-split9{.flexGrow(9);}
+.flex-split10{.flexGrow(10);}
+.flex-split11{.flexGrow(11);}
+.flex-split12{.flexGrow(12);}
+.flex-split13{.flexGrow(13);}
+.flex-split14{.flexGrow(14);}
+.flex-split15{.flexGrow(15);}
+.flex-item16{.flexGrow(16);}

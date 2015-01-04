@@ -1,0 +1,104 @@
+.style (splitbutton) {
+	.layout(button);
+	.style(button);
+
+	box-sizing: border-box;
+	font-size: @fontSize;
+	padding: 0px 8px 0px 8px;
+	border-right: none;
+	display: inline-block;
+	line-height: 21px;
+	margin-right: -4px;
+
+
+	&:last-child {
+		border-right: solid 1px @WEBUI-btn-border;
+	}
+
+	&-wr.split-mini {
+		& .button-split {
+			height: 19px;
+			line-height: 1.583;
+			font-size: (@fontSize - 1px);
+
+			&.split-action {
+				line-height: 1.266;
+
+			}
+
+			&.split-action-x {
+				&::after {
+					content: "\e600";
+				}
+			}
+
+			&.split-selected:hover {
+				color: @orange;
+				.grad-overlay-03;
+				background-color: @grey06;
+				@media print {
+					background: @bgPrint1 !important;
+					.printColor;
+				}
+			}
+		}
+	}
+
+	&.split-selected {
+		color: @orange;
+		.grad-overlay-03;
+		background-color: @grey06;
+		@media print {
+			background: @bgPrint1 !important;
+			.printColor;
+		}
+	}
+
+	// Bit hacky find a better way
+	&.split-selected:hover {
+		color: @orange !important;
+		.grad-overlay-03;
+		background-color: @grey06 !important;
+		@media print {
+			background: @bgPrint1 !important;
+			.printColor;
+		}
+	}
+
+	&.split-action {
+		box-sizing: border-box;
+		position: relative;
+		padding-left: 13px;
+		&::after {
+			font-family: 'EikonFont';
+			font-style: normal;
+			font-weight: normal;
+			font-size: 15px;
+
+			display: block;
+			position: absolute;
+
+			left: 3px;
+		}
+	}
+
+
+	&.split-action-select {
+		&::after {
+			top: 1px;
+			@-moz-document url-prefix() {
+				top: 0px;
+			}
+			content: "\e900";
+		}
+	}
+
+	&.split-action-x {
+		&::after {
+			@-moz-document url-prefix() {
+				top: -1px;
+			}
+			content: "\e902";
+		}
+	}
+}

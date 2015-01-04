@@ -1,0 +1,182 @@
+@import "../../../../core/webui.less";
+@import "global.less";
+
+@arrowWidth: 5px;
+@middleArrowWidth: 5px;
+@innerArrowWidth: 5px;
+@middleArrowPosition: 0px;
+@innerArrowPosition: 0px;
+@sideArrowOffset: -7px;
+
+// background style.
+.toolTipStyle() {
+  border:solid 1px @black;
+  background-color: @grey10;
+  .shadow;
+  @media print {
+    border:solid 1px @borderPrint1;
+    color:@textColorPrint;
+  }
+}
+
+
+.tooltipTopArrow (@width, @color) {
+  border-width: @width @width 0;
+  margin-left: (-2 * @width);
+  border-top-color: @color;
+}
+
+.tooltipRightArrow (@width, @color) {
+  margin-top: (-2 * @width);
+  border-width: @width @width @width 0;
+  border-right-color: @color;
+}
+
+.tooltipBottomArrow (@width, @color) {
+  margin-left: (-2 * @width);
+  border-width: 0 @width @width;
+  border-bottom-color: @color;
+  position:absolute;
+}
+
+.tooltipLeftArrow (@width, @color) {
+  margin-top: (-2 * @width);
+  border-width: @width 0 @width @width;
+  border-left-color: @color;
+}
+
+.tooltip, .popover {
+  position: absolute;
+  z-index: 1030;
+  display: block;
+  visibility: visible;
+  font-size: (@fontSize - 2px);
+  line-height: 1.4;
+  opacity: 0;
+
+  &.in {
+    opacity: 1;
+  }
+
+  .arrow, .tooltip-arrow {
+    &:before, &:after {
+      content: '';
+      border-style: solid;
+      position: absolute;
+      border-color: rgba(255, 0, 0, 0);
+    }
+  }
+
+  &.top {
+    margin-top: -3px;
+    padding: 5px 0;
+
+    .arrow, .tooltip-arrow {
+      bottom: -3px;
+      left: 50%;
+
+      &:before {
+        .tooltipTopArrow (@middleArrowWidth, @black);
+        bottom: 0;
+      }
+
+      &:after {
+        .tooltipTopArrow (@middleArrowWidth, @grey10);
+        bottom: 1px;
+      }
+    }
+  }
+
+  &.right {
+    margin-left: 3px;
+    padding: 0 5px;
+
+    .arrow, .tooltip-arrow {
+      top: 50%;
+      left:-5px;
+
+      &:before {
+        .tooltipRightArrow(@middleArrowWidth, @black);
+        left: 2px;
+        bottom: -2px;
+
+      }
+
+      &:after {
+        .tooltipRightArrow (@middleArrowWidth, @grey10);
+        left: 3px;
+        bottom: -2px;
+
+      }
+    }
+  }
+
+  &.bottom {
+    margin-top: 3px;
+    padding: 5px 0;
+
+    .arrow, .tooltip-arrow {
+      top: 0;
+      left: 50%;
+
+      &:before {
+        top: @middleArrowPosition;
+        .tooltipBottomArrow(@arrowWidth, @black);
+        top: -3px;
+      }
+      &:after {
+        .tooltipBottomArrow (@arrowWidth, @grey10);
+        top: -2px;
+      }
+    }
+  }
+
+  &.left {
+    margin-left: -3px;
+    padding: 0 5px;
+
+    .arrow, .tooltip-arrow {
+      top: 50%;
+      right: -5px;
+      &:before {
+        .tooltipLeftArrow(@middleArrowWidth, @black);
+        bottom: -3px;
+        right: 2px;
+      }
+
+      &:after {
+        .tooltipLeftArrow (@middleArrowWidth, @grey10);
+        bottom: -3px;
+        right: 3px;
+      }
+    }
+  }
+
+  .popover-inner, .tooltip-inner {
+    max-width: 200px;
+    padding: 5px;
+    color: @text-default;
+    // text-align: center;
+    text-decoration: none;
+    .toolTipStyle();
+
+    .popover-title {
+        padding: 5px;
+        margin: -5px -5px 5px -5px;
+        border-bottom: 1px solid #000;
+        background-color: @grey08;
+        font-size: (@fontSize - 2);
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+  }
+
+  .arrow, .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+

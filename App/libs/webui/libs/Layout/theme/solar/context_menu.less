@@ -1,0 +1,31 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+@import "../../../Typography/theme/@{schema}/typography";
+
+.context-menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 162px;
+	z-index:10000;
+	// padding: 1px;
+	background-color: @grey06;
+	border: 1px solid @grey11;
+	.shadow;
+
+	A.context-menu-link {
+		display: block;
+		padding: 4px 6px;
+		width: 150px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: @text-default;
+		margin: 0;
+
+
+		&:hover {
+			color: @text-hover;
+			background-color:@grey05;
+		}
+	}
+}

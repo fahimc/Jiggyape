@@ -1,0 +1,58 @@
+@import "../../../../core/webui";
+@import "../../../Typography/theme/@{schema}/typography";
+@import "global";
+
+UL.pagination {
+	white-space: nowrap;
+	display: inline-block;
+	font-size: 0;
+	& > LI {
+		display: inline-block;
+		&.active > A {
+			.style(button-active);
+			color: @orange !important;
+		}
+		&.disabled > A {
+			.style(button-disabled);
+		}
+		& > A {
+			.style(button);
+			font-size: @fontSize;
+			display: inline-block;
+			padding: 3px 8px;
+			cursor: pointer;
+			border-right-width: 0;
+		}
+		&:last-child > A {
+			border-right-width: 1px !important;
+		}
+	}
+}
+UL.pager {
+	width: 100%;
+	white-space: nowrap;
+	&::after {
+		content: '';
+		height: 0;
+		clear: both;
+		display: block;
+	}
+	& > LI {
+		&.previous {
+			float: left;
+		}
+		&.next {
+			float: right;
+		}
+		&.disabled > A {
+			.style(button-disabled);
+		}
+		& > A {
+			.style(button);
+			font-size: @fontSize;
+			display: inline-block;
+			padding: 3px 8px;
+			cursor: pointer;
+		}
+	}
+}

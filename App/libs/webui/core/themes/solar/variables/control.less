@@ -1,0 +1,36 @@
+.variables(control) {
+
+  // Begin: Inheritance
+  //------------------------
+
+	.variables(base);
+
+  //------------------------
+  // End: Inheritance
+
+
+	.focus() {
+		@_border: 1px dotted @orange;
+		@_borderTop: @_border;
+		@_borderRight: @_border;
+		@_borderBottom: @_border;
+		@_borderLeft: @_border;
+		@_outline: none;
+	}
+
+	.print() {
+		@_color: @black;
+		@_border: solid 1px @black;
+		@_borderTop: @_border;
+		@_borderRight: @_border;
+		@_borderBottom: @_border;
+		@_borderLeft: @_border;
+		@_borderRadius: 0;
+		@_background: @white;
+		@_backgroundColor: @_background;
+
+		.disabled() {
+			@_color: @grey04;
+		}
+	}
+}

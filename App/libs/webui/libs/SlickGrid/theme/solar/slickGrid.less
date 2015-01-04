@@ -1,0 +1,249 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+@import "../../structure.less";
+
+/*
+IMPORTANT:
+In order to preserve the uniform grid appearance, all cell styles need to have padding, margin and border sizes.
+No built-in (selected, editable, highlight, flashing, invalid, loading, :focus) or user-specified CSS
+classes should alter those!
+*/
+
+.slick-viewport, .grid-canvas {
+  // padding: 1px 0;
+  background: @grey10;
+}
+
+.slick-header, .slick-headerrow {
+  background: @grey09;
+  color: @grey03;
+  font-weight: bold;
+}
+
+.slick-headerrow-column {
+  border-bottom: 0;
+  height: 100%;
+}
+
+.slick-header-column {
+  border-right: 1px solid @grey11;
+  border-bottom: 1px solid @grey11;
+  background: @grey09;
+
+  &:hover {
+      background: @grey08;
+      color: @text-hover;
+  }
+}
+
+.slick-column-name {
+  display: block;
+}
+
+.slick-sort-indicator {
+  //border-top: 6px solid @WEBUI-table-header-txt;
+}
+
+.slick-header-column-sorted {
+  .slick-sort-indicator-desc {
+    border-top: 6px solid @WEBUI-table-border-active;
+  }
+  .slick-sort-indicator-asc {
+    border-top: none;
+    border-bottom: 6px solid @WEBUI-table-border-active;
+  }
+  .slick-column-name {
+    padding-right: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: @WEBUI-table-header-txt-sort;
+  }
+}
+
+.slick-row {
+  position: absolute;
+  border: 0px;
+  line-height: 19px;
+}
+
+.slick-row.selected {
+  z-index: 10;
+}
+
+.slick-cell {
+  color: @text-default;
+  border-right: 1px solid @grey11;
+  input[type=checkbox] {
+    top: 2px;
+  }
+  &:first-child {
+    border-left: 1px solid transparent;
+  }
+
+  &.active {
+    &.editable {
+      border-top-width: 0;
+      border-bottom-width: 0;
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    }
+  }
+}
+
+.slick-group {
+  border-bottom: 2px solid silver;
+}
+
+.slick-group-toggle {
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+}
+
+.slick-group-toggle.expanded {
+  background: url(images/collapse.gif) no-repeat center center;
+}
+
+.slick-group-toggle.collapsed {
+  background: url(images/expand.gif) no-repeat center center;
+}
+
+.slick-sortable-placeholder {
+  background: silver !important;
+}
+
+.slick-row {
+  background: @grey10;
+  border: 1px solid @grey11;
+  border-width: 1px 0;
+}
+
+.slick-row:hover {
+  background: @grey08;
+  border-style: solid;
+
+  * {
+    color: @text-hover;
+  }
+}
+
+.selectable .slick-row.active {
+  background: darken(saturate(@orange, -82%), 49%);
+  z-index: 10;
+  border-color: @orange;
+  border-style: dotted;
+  * {
+    color: @orange;
+  }
+  .slick-cell {
+    border-right-color: darken(@WEBUI-table-bg-active, 5%);
+    &:first-child {
+      border-left-color: @orange;
+      border-left-style: dotted;
+    }
+    &:last-child {
+      border-right-color: @orange;
+      border-right-style: dotted;
+    }
+  }
+}
+
+.slick-row.loading {
+  opacity: 0.5;
+}
+
+.slick-cell.invalid {
+  border-color: red;
+  -moz-animation-duration: 0.2s;
+  -webkit-animation-duration: 0.2s;
+  -moz-animation-name: slickgrid-invalid-hilite;
+  -webkit-animation-name: slickgrid-invalid-hilite;
+}
+
+@-moz-keyframes slickgrid-invalid-hilite {
+  from { box-shadow: 0 0 6px red; }
+  to { box-shadow: none; }
+}
+
+@-webkit-keyframes slickgrid-invalid-hilite {
+  from { box-shadow: 0 0 6px red; }
+  to { box-shadow: none; }
+}
+
+
+/* Slick.Editors.PercentComplete */
+input.editor-percentcomplete {
+  width: 100%;
+  height: 100%;
+  line-height: 100%;
+  border: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+
+  float: left;
+}
+
+.editor-percentcomplete-picker {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 100%;
+  background: url("../images/pencil.gif") no-repeat center center;
+  overflow: visible;
+  z-index: 1000;
+  float: right;
+}
+
+.editor-percentcomplete-helper {
+  border: 0 solid @WEBUI-input-border;
+  position: absolute;
+  top: -2px;
+  left: -9px;
+  background: url("../images/editor-helper-bg.gif") no-repeat top left;
+  padding-left: 9px;
+
+  width: 120px;
+  height: 140px;
+  display: none;
+  overflow: visible;
+}
+
+.editor-percentcomplete-wrapper {
+  background: @WEBUI-table-bg;
+  padding: 20px 15px;
+
+  width: 100%;
+  height: 100px;
+  border: 1px solid @WEBUI-input-border;
+  .shadow(0 0 5px fade(@black, 60%));
+}
+
+.editor-percentcomplete-buttons {
+  float: right;
+}
+
+.editor-percentcomplete-buttons button {
+  width: 80px;
+  margin-bottom: 3px;
+}
+
+.editor-percentcomplete-slider {
+  float: left;
+}
+
+.editor-percentcomplete-picker:hover .editor-percentcomplete-helper {
+  display: block;
+}
+
+.editor-percentcomplete-helper:hover {
+  display: block;
+}

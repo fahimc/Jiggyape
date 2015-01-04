@@ -1,0 +1,98 @@
+@import "../../../../core/webui.less";
+
+h1 {
+    color: @grey01;
+    font-size: 44px;
+    font-weight: normal;
+}
+
+h2 {
+    color: @grey01;
+    font-size: 37px;
+    font-weight: normal;
+}
+
+h3 {
+    color: @grey01;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+h4 {
+    color: @grey01;
+    font-size: 23px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h5 {
+    color: @grey01;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h6 {
+    color: @grey01;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.sub-head {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.body-dark {
+    color: @grey03;
+}
+
+.body-large {
+    font-size: 15px;
+}
+
+.monospace {
+    font-family:'HelveticaMonospacedPro';
+    color: @grey01;
+}
+
+.positive {
+    color: @green;
+}
+
+.negative {
+    color: @red;
+}
+
+.metadata {
+    color: @grey04;
+}
+
+a {
+	color: @grey01;
+    cursor: pointer;
+	text-decoration: none;
+	.links-alt-color & {
+		color: @blue;
+    &:hover {
+        color: lighten(saturate(@blue, 16%), 13%);
+    }
+    &:active, &:visited {
+        color: darken(@blue, 13%);
+    }
+	}
+	.links-alt-color1 & {
+		color: @grey02;
+	}
+	&.extLink {
+		text-decoration: underline;
+	}
+	&:hover {
+		color: @white;
+	}
+	&:active, &:visited {
+		color: darken(@grey01, 20%);
+	}
+}

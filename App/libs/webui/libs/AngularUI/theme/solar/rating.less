@@ -1,0 +1,36 @@
+@import "../../../../core/webui.less";
+@import "../../../Icons/theme/@{schema}/icons_all.less";
+@import "global.less";
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  .icon-fix;
+}
+
+.glyphicon-star {
+  color: @orange;
+  .icon-favourties;
+  &:before {
+    font-size: 15px;
+  }
+
+  &-empty {
+    color: @grey01;
+    .icon-favourties;
+    &:before {
+      font-size: 15px;
+    }
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

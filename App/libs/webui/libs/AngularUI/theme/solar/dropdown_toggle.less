@@ -1,0 +1,62 @@
+@import "../../../../core/webui.less";
+
+.ng-scope {
+	&.dropdown {
+		position:relative;
+
+		&.open .dropdown-menu {
+		  display: block;
+		}
+
+		.dropdown-menu {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: 1000;
+			display: none;
+			float: left;
+			min-width: 162px;
+			padding: 1px;
+            border:solid 1px @black;
+            background-color: @grey06;
+            .shadow;
+
+			&.pull-right {
+				right: 0;
+				left: auto;
+			}
+
+			LI {
+              //ie10 fix to clear list styles on revealed list
+              display: inline;
+
+              &:first-child > A {
+					border-top: 0;
+				}
+				&:last-child > A {
+					border-bottom: 0;
+				}
+
+				&.active > A {
+					color:@orange;
+				}
+
+				& > A {
+					display: block;
+					padding: 5px 8px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					color: @textControlColor;
+					margin: 0;
+					cursor:pointer;
+
+					&:hover {
+						color: @grey01;
+						background: @grey05;
+					}
+				}
+			}
+
+		}
+	}
+}

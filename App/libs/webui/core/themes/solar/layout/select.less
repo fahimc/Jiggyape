@@ -1,0 +1,16 @@
+.layout (select) {
+
+  height: @input-height;
+	padding-left: 4px;
+	padding-right: 25px;
+  line-height: (@input-height - 4);
+  font-size:@fontSize;
+	OPTION, OPTGROUP {
+		font-size: @fontSize;
+	}
+	&[size] {
+		height: auto;
+		min-height: @input-height;
+		padding: 0;
+	}
+}

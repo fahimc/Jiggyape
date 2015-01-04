@@ -1,0 +1,266 @@
+@import "../core/webui.less";
+@import 'styles/button';
+
+// tool tips, drop-down menus, drop panels
+.panelStyle () {
+	border:solid 1px @borderColorZero;
+	background-color: @bgColor1;
+	.border-radius;
+	.shadow(inset 0 0 0 1px @highlightColor1, 1px 1px 8px 1px @shadowControlColor2);
+	@media print {
+		border:solid 1px @borderPrint1;
+		color:@textColorPrint;
+	}
+}
+
+// content blocks styles
+	.contentStyle () when (@schema = @old_schema) {
+		border:solid 1px @borderColorZero;
+		background-color: @bgColor1;
+		.border-radius;
+		.shadow(inset 0 1px 1px @shadowColorZero, 0 1px 0 0 @shadowColorContent);
+		@media print {
+			border:solid 1px @borderPrint1;
+			.border-radius(0);
+			.shadow(none);
+			background-color: @bgPrintZero;
+		}
+	}
+
+	.contentStyle () when (@schema = @solar_schema) {
+		margin: 1px;
+		@media print {
+			.shadow(none);
+			background-color: @bgPrintZero;
+		}
+	}
+
+	.contentHeaderStyle () when (@schema = @old_schema) {
+		position: relative;
+		border-bottom: solid 1px @borderContentHeader;
+		background-color: @bgContentHeader;
+		.shadow(inset 0 1px 1px @shadowColorZero);
+		.border-top-left-radius;
+		.border-top-right-radius;
+		@media print {
+			border-width:0;
+			border-bottom:solid 1px @borderPrint1;
+			.border-radius(0);
+			.shadow(none);
+			background-color: @bgPrint1;
+			.printColor;
+		}
+	}
+
+	.contentHeaderStyle () when (@schema = @solar_schema) {
+		.grad-overlay-02;
+
+		position: relative;
+		background-color:@WEBUI-header-bg;
+		height: @hdr-height-l1;
+		min-height: @hdr-height-l1;
+		line-height: @hdr-height-l1;
+		font-size: @hdr-font-l1;
+
+		@media print {
+			border-width:0;
+			border-bottom:solid 1px @borderPrint1;
+			.border-radius(0);
+			.shadow(none);
+			background-color: @bgPrint1;
+			.printColor;
+		}
+	}
+
+	// .contentSubHeaderStyle () when (@schema = dark), (@schema = light) {
+	// 	position:relative;
+	// 	background-color: @bgContentSubHeader;
+	// 	border-top: solid 1px @borderColor3;
+	// 	border-bottom:solid 1px @borderContentSubHeader;
+	// 	.shadow(inset 0px 1px 3px @shadowColorSubHeader1, 0px 1px 7px @shadowColorSubHeader2);
+	// 	@media print {
+	// 		border-width:0;
+	// 		border-bottom:solid 1px @borderPrint1;
+	// 		.border-radius(0);
+	// 		.shadow(none);
+	// 		background-color: @bgPrint1;
+	// 		.printColor;
+	// 	}
+	// }
+
+	.contentSubHeaderStyle () when (@schema = @old_schema) {
+		position:relative;
+		background-color: @bgContentSubHeader;
+		border-top: solid 1px @borderColorZero;
+		border-bottom:solid 2px @borderContentSubHeader;
+		.shadow(inset 0px 2px 1px 0 @shadowColorSubHeader1);
+		@media print {
+			border-width:0;
+			border-bottom:solid 1px @borderPrint1;
+			.border-radius(0);
+			.shadow(none);
+			background-color: @bgPrint1;
+			.printColor;
+		}
+	}
+
+	.contentSubHeaderStyle () when (@schema = @solar_schema) {
+		position:relative;
+		background-color: darken(@grey06, 8%);
+		height: @hdr-height-l1;
+		min-height: @hdr-height-l1;
+		line-height: (@hdr-height-l1 + 2px);
+		font-size: @hdr-font-l1;
+
+		@media print {
+			border-width:0;
+			border-bottom:solid 1px @borderPrint1;
+			.border-radius(0);
+			.shadow(none);
+			background-color: @bgPrint1;
+			.printColor;
+		}
+	}
+
+	.contentHeaderText () when (@schema = @old_schema) {
+		color:@textColor2;
+		font-size: @fontSize;
+		display:inline-block;
+		font-weight:bold;
+		text-transform:uppercase;
+		vertical-align:middle;
+		padding: (@spacerSections - 1px) @spacerSections;
+		min-height:(@spacerSections * 2);
+		SPAN {
+			display:inline-block;
+		}
+		@media print {
+			color:@textColorPrint;
+		}
+	}
+
+	.contentHeaderText () when (@schema = @solar_schema) {
+		color:@hdr-txt-color;
+		font-size: @hdr-font-l1;
+		font-weight: bold;
+		text-transform:uppercase;
+		vertical-align:middle;
+		padding: 0 @spacerSections;
+
+		/* Hack to account for proxima nova font weird spacing, so it's dead centered */
+		display: inline-block;
+		// margin-bottom: -1px;
+
+		SPAN {
+			display:inline-block;
+		}
+		@media print {
+			color:@textColorPrint;
+		}
+	}
+
+//icons
+	.iconStyle (@height: 0,@width: 0, @bgImage, @positionX: 0, @positioY: 0) {
+		display:inline-block;
+		font-size:0;
+		height: @height;
+		width: @width;
+		background: transparent url("@{imageLocation}/@{schema}/@{bgImage}") no-repeat @positionX @positioY;
+		.printColor;
+	}
+
+//Controls Styles
+	//input,select, etc Shadows
+	.controlStyle() when (@schema = dark), (@schema = light) {
+		.shadow(inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 0 0 @shadowControlColor2, inset 0 0 1px @shadowSelectColor1);
+		border:solid 1px @borderControl;
+		.border-radius;
+		height:22px;
+		@media print {
+			border:solid 1px @borderPrintZero;
+		}
+	}
+	.controlStyleHover () when (@schema = dark), (@schema = light) {
+		.shadow(inset 0 0 4px 1px @shadowSelectFocusColor1, inset 0 1px 0 0 @shadowControlColor2, inset 0 1px 0 0 (@shadowSelectFocusColor1 - #090501));
+		background-color: @bgControlHover;
+	}
+	.controlStyleError () when (@schema = dark), (@schema = light) {
+		.shadow(inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 0 0 @shadowControlColor2, inset 0 0 1px @shadowSelectColor1, 0 0 1px 1px @bgError);
+	}
+	.controlStyleWarning () when (@schema = dark), (@schema = light) {
+		.shadow(inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 0 0 @shadowControlColor2, inset 0 0 1px @shadowSelectColor1, 0 0 1px 1px @bgWarning);
+	}
+
+	.controlStyle() when (@schema = @old_schema) {
+		.shadow(inset 0 2px 0px 0px @shadowControlColor1, inset 0 3px 7px 0px @bgControl, inset 0px 0px 0px 1px @highlightColor1, inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 3px 2px @shadowControlColor2);
+		border:0;
+		.border-radius;
+		height:25px;
+		line-height: 21px;
+		padding-left:6px;
+		@media print {
+			border:solid 1px @borderPrintZero;
+		}
+	}
+
+	.controlStyle() when (@schema = @solar_schema) {
+		.shadow(inset 0 2px 0px 0px @shadowControlColor1, inset 0 3px 7px 0px @bgControl, inset 0px 0px 0px 1px @highlightColor1, inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 3px 2px @shadowControlColor2);
+		border:0;
+		.border-radius;
+		height:23px;
+		line-height: 21px;
+		padding-left:6px;
+		@media print {
+			border:solid 1px @borderPrintZero;
+		}
+	}
+
+	.controlStyleError () when (@schema = @old_schema) {
+		.shadow(inset 0 2px 0px 0px @shadowControlColor1, inset 0 3px 7px 0px @bgControl, inset 0px 0px 0px 1px @highlightColor1, inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 3px 2px @shadowControlColor2, 0 0 1px 1px @bgError);
+	}
+	.controlStyleWarning () when (@schema = @old_schema) {
+		.shadow(inset 0 2px 0px 0px @shadowControlColor1, inset 0 3px 7px 0px @bgControl, inset 0px 0px 0px 1px @highlightColor1, inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 3px 2px @shadowControlColor2, 0 0 1px 1px @bgWarning);
+	}
+	.controlStyleHover () when (@schema = @old_schema) {
+		.shadow(inset 0px 0px 0px 1px @borderControlFocus, inset 0 0 4px 1px @shadowControlColor1, inset 0 1px 3px 2px @shadowControlColor2);
+		background-color: @bgControlHover;
+	}
+
+
+	// Textarea Reset Styles
+		.textareaResetStyle () {
+			.shadow(none);
+			.border-radius(0);
+			width: auto;
+			padding: 0;
+			box-sizing: content-box;
+			font-family: inherit;
+		}
+
+	// Select Reset Styles
+		.selectResetStyle () {
+			background: none;
+			margin: 0;
+			padding: 0;
+			border:0;
+			.shadow(none);
+			.border-radius(0);
+		}
+
+//Arrows
+
+	.arrow(@size) {
+		position: relative;
+
+		&:after {
+			content:"";
+			display:inline-block;
+			width:0;
+			height:0;
+			border:solid 0 transparent;
+			border-width: @size;
+			position:absolute;
+			right:0;
+			top:0;
+		}
+	}

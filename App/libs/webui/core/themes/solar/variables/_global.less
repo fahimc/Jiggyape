@@ -1,0 +1,9 @@
+.variables(global) {
+  @_largeFactor: 1.5;
+  @_smallFactor: 0.75;
+}
+
+.variables(baseAndGlobal) {
+  .variables(base);
+  .variables(global);
+}

@@ -1,0 +1,153 @@
+@import "../../../../core/webui.less";
+
+
+// @import "global.less";
+// @import "tooltip.less";
+
+// @popoverArrowWidth: 10px;
+// @popoverMiddleArrowWidth: 9px;
+// @popoverInnerArrowWidth: 8px;
+// @popoverMiddleArrowPosition: 2px;
+// @popoverInnerArrowPosition: 4px;
+
+// .popoverTopArrow (@width, @color) {
+// 	border-width: @width @width 0;
+// 	margin-left: -(@width);
+// 	border-top-color: @color;
+// }
+
+// .popoverRightArrow (@width, @color) {
+// 	margin-top: -(@width);
+// 	border-width: @width @width @width 0;
+// 	border-right-color: @color;
+// }
+
+// .popoverBottomArrow (@width, @color) {
+// 	margin-left: -(@width);
+// 	border-width: 0 @width @width;
+// 	border-bottom-color: @color;
+// }
+
+// .popoverLeftArrow (@width, @color) {
+// 	margin-top: -(@width);
+// 	border-width: @width 0 @width @width;
+// 	border-left-color: @color;
+// }
+
+// .popover {
+// 	position:absolute;
+// 	top:0;
+// 	left:0;
+// 	z-index:1010;
+// 	display:none;
+// 	max-width:276px;
+// 	.panelStyle;
+
+// 	&-title {
+// 		border-bottom:solid 1px @borderColorZero;
+// 		padding:4px 8px 5px 8px;
+// 		color:@textColor5;
+// 		background-color: (@borderColor2 + #030303);
+// 		font-weight:bold;
+// 		margin:1px;
+// 		font-size: @fontSize;
+// 	}
+
+// 	&-content {
+// 		padding:8px;
+// 		font-size: @fontSize;
+// 	}
+
+// 	& > .arrow {
+// 		position:absolute;
+// 		width:0;
+// 		height:0;
+// 		border-color:transparent;
+// 		border-style:solid;
+// 		&:before, &:after {
+// 			content: '';
+// 			border-style: solid;
+// 			position: absolute;
+// 			border-color: rgba(0, 0, 0, 0);
+// 		}
+// 	}
+
+
+// 	&.top {
+// 		margin-top: -(@popoverArrowWidth);
+// 		.arrow {
+// 			bottom: -(@popoverArrowWidth + 1);
+// 			left:50%;
+// 			.tooltipTopArrow (@popoverArrowWidth, @borderColorZero);
+
+// 			&:before {
+// 				.tooltipTopArrow (@popoverMiddleArrowWidth, @highlightColor1);
+// 				bottom: @popoverMiddleArrowPosition;
+// 			}
+
+// 			&:after {
+// 				.tooltipTopArrow (@popoverInnerArrowWidth, @bgColor1);
+// 				bottom: @popoverInnerArrowPosition;
+// 			}
+// 		}
+
+// 	}
+// 	&.left {
+// 		margin-left: -(@popoverArrowWidth);
+// 		.arrow {
+// 			top: 50%;
+// 			right: -(@popoverArrowWidth + 1);
+// 			.tooltipLeftArrow (@popoverArrowWidth, @borderColorZero);
+
+// 			&:before {
+// 				right: @popoverMiddleArrowPosition;
+// 				.tooltipLeftArrow(@popoverMiddleArrowWidth, @highlightColor1);
+// 			}
+
+// 			&:after {
+// 				.tooltipLeftArrow (@popoverInnerArrowWidth, @bgColor1);
+// 				right: @popoverInnerArrowPosition;
+// 			}
+// 		}
+// 	}
+// 	&.right {
+// 		margin-left: @popoverArrowWidth;
+// 		.arrow {
+// 			top: 50%;
+// 			left: -(@popoverArrowWidth + 1);
+// 			.tooltipRightArrow (@popoverArrowWidth, @borderColorZero);
+
+// 			&:before {
+// 				left: @popoverMiddleArrowPosition;
+// 				.tooltipRightArrow(@popoverMiddleArrowWidth, @highlightColor1);
+// 			}
+
+// 			&:after {
+// 				.tooltipRightArrow (@popoverInnerArrowWidth, @bgColor1);
+// 				left: @popoverInnerArrowPosition;
+// 			}
+// 		}
+// 	}
+// 	&.bottom {
+// 		margin-top: @popoverArrowWidth;
+// 		.arrow {
+// 			top: -(@popoverArrowWidth + 1);
+// 			left: 50%;
+// 			.tooltipBottomArrow (@popoverArrowWidth, @borderColorZero);
+
+// 			&:before {
+// 				top: @popoverMiddleArrowPosition;
+// 				.tooltipBottomArrow(@popoverMiddleArrowWidth, @highlightColor1);
+// 			}
+
+// 			&:after {
+// 				.tooltipBottomArrow (@popoverInnerArrowWidth, @bgColor1);
+// 				top: @popoverInnerArrowPosition;
+// 			}
+// 		}
+// 	}
+
+
+// }
+
+

@@ -1,0 +1,174 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+// LEGACY START
+
+.colorBlock {
+	margin:0 (@spacerSections / 2) @spacerSections (@spacerSections / 2);
+	position:relative;
+	top: (@spacerSections / 2);
+	padding-bottom: @spacerSections;
+}
+
+.colorBlock-header {
+		.grad-overlay-02;
+
+		position: relative;
+		background-color: @grey06;
+		height: 29px;
+		min-height: 29px;
+		line-height: 29px;
+		font-size: @hdr-font-l1;
+
+		@media print {
+			border-width:0;
+			border-bottom:solid 1px @borderPrint1;
+			.border-radius(0);
+			.shadow(none);
+			background-color: @bgPrint1;
+			.printColor;
+		}
+}
+
+
+.colorBlock-header2 {
+	.colorBlock-header;
+}
+
+.colorBlock-content {
+	border-top:solid 0px @borderColor3;
+	@media print {
+		border:0;
+	}
+}
+
+.colorBlock-subheader {
+
+	position:relative;
+	background-color: @grey07;
+	height: 29px;
+	min-height: 29px;
+	line-height: 29px;
+	font-size: @hdr-font-l1;
+
+	@media print {
+		border-width:0;
+		border-bottom:solid 1px @borderPrint1;
+		.border-radius(0);
+		.shadow(none);
+		background-color: @bgPrint1;
+		.printColor;
+	}
+}
+.colorBlock-subcontent {
+	border-top:solid 1px @borderColor3;
+	&.hidden {
+		overflow: hidden;
+		height: 0;
+	}
+}
+
+.content-spacer {
+	padding:@spacerSections;
+	// background-color: @grey10;
+}
+
+.colorBlock-header-link {
+	.contentHeaderText;
+	.linkColor(@hdr-txt-color, @white);
+	// color:@grey02;
+	cursor: pointer;
+}
+.colorBlock-header-span {
+	.contentHeaderText;
+
+}
+.colorBlock-header-span:not(:first-of-type){
+	color:@grey03;
+	text-transform: none;
+}
+
+
+.colorBlock-header-text {
+	text-transform:uppercase;
+}
+.colorBlock-header-text-01,
+.colorBlock-header-text-02,
+.colorBlock-header-link-02 {
+
+	.contentHeaderText;
+	font-weight: normal;
+	padding: 0;
+
+	// color: @textColor2;
+	// font-size: @fontSize;
+	// text-transform:uppercase;
+	// font-weight:normal;
+	// vertical-align:middle;
+	//
+	@media print {
+		color:@textColorPrint;
+	}
+}
+.colorBlock-header-link-02 {
+	.linkColor(@textColor2, @textColorZero);
+	@media print {
+		color:@textColorPrint;
+	}
+}
+.colorBlock-header-icon1 {
+	display:inline-block;
+	cursor:pointer;
+	vertical-align:middle;
+	padding:0 (@spacerSections / 2);
+}
+
+.colorBlock-header-text-04,
+.colorBlock-header-link2 {
+	position:absolute;
+	top:0px;
+	right:@spacerSections;
+	// margin:5px 0;
+	SELECT {
+		margin-top:-3px;
+	}
+}
+
+// LEGACY END
+
+.content-block {
+	.content {
+		padding: 6px;
+	}
+	header {
+		position: relative;
+		height: 29px;
+		min-height: 29px;
+		line-height: 29px;
+		padding: 0 6px;
+		h6 {
+			margin: 0;
+		}
+		&.level1 {
+			.grad-overlay-02;
+			font-size: @fontSize;
+			background-color: @grey06;
+		}
+		&.level2 {
+			background-color: @grey08;
+			h6 {
+				font-size: (@fontSize - 2);
+				color: 	@grey02;
+			}
+		}
+		&.level3 {
+			background-color: @grey09;
+			h6 {
+				font-size: @fontSize;
+				color: 	@grey03;
+				font-weight: bold;
+				text-transform: none;
+			}
+		}
+	}
+}

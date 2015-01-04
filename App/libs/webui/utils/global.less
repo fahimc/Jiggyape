@@ -1,0 +1,71 @@
+@import "../core/webui.less";
+
+.pointer {
+	cursor:pointer;
+}
+
+.align {
+	&1{
+		text-align:left !important;
+	}
+	&2{
+		text-align:center !important;
+	}
+	&3 {
+		text-align:right !important;
+	}
+}
+
+.pos, .pos * {
+	color: @textColorPos !important;
+	@media print {
+		color: @textColorPrint !important;
+	}
+}
+
+.neg, .neg * {
+	color: @textColorNeg !important;
+	@media print {
+		color: @textColorPrint !important;
+	}
+}
+
+.sel {
+	font-weight: 700 !important;
+}
+
+.dis, A.dis:hover, A.dis:active, .dis A {
+	color: @textColorDis !important;
+	cursor: default;
+}
+
+.wrap-no {
+	white-space: nowrap;
+}
+
+.hidden {
+	display: none;
+}
+
+.noBorder {
+	border: none 0 !important;
+}
+.border-no1 {
+	border-top: 0 !important;
+}
+.border-no2 {
+	border-right: 0 !important;
+}
+.border-no3 {
+	border-bottom: 0 !important;
+}
+.border-no4 {
+	border-left: 0 !important;
+}
+
+.ellipsisText {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	vertical-align: baseline;
+}

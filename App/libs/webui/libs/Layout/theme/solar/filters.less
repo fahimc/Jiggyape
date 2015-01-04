@@ -1,0 +1,36 @@
+@import "../../../../core/webui.less";
+.filter-item {
+	display: inline-block;
+	padding: 4px 6px;
+	margin-bottom: 2px;
+	vertical-align: top;
+
+	&-line  {
+		vertical-align: middle;
+		margin-bottom: 0;
+
+		.filter-label, .filter-action-item {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.filter-label {
+			padding: 2px 5px 0 0;
+			margin:0;
+			font-size: 13px;
+		}
+
+		.filter-action-item {
+			& > INPUT[type="checkbox"] {
+				margin: 2px 4px 2px 4px;
+
+				& + LABEL {
+					// padding-top: 5px;
+					// font-size: 13px;
+					display: inline-block;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+}

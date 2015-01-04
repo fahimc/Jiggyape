@@ -1,0 +1,31 @@
+@import "../../../FormElements/theme/@{schema}/button.less";
+@import "../../../../core/webui.less";
+
+.btn {
+	margin: 0;
+
+	&.active, &.active:hover{
+		color:@orange !important;
+		background-color: @grey06 !important;
+		.grad-overlay-03 !important;
+	}
+}
+
+.btn-group {
+	font-size:0;
+	white-space:nowrap;
+
+	.btn {
+		border-right-width:0;
+
+		&:last-child {
+			border-right-width:1px;
+		}
+		&:focus {
+			position:relative;
+		}
+	}
+}
+
+
+

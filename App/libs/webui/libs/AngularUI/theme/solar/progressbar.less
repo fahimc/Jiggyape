@@ -1,0 +1,83 @@
+@import "../../../../core/webui";
+@import "../../../../utils/_utilityImporter";
+@import "global.less";
+
+.progress{
+	vertical-align:middle;
+	background-color: @black;
+
+	@media print {
+		border-color: @borderPrintZero;
+	}
+
+	&::after {
+		content: '';
+		display: block;
+		clear: both;
+		height: 0;
+		line-height: 0;
+	}
+
+	.progress-bar {
+		background-color: @green02;
+		.transition(width .6s ease);
+		padding: 3px 0;
+		line-height: 0;
+		float: left;
+		position: relative;
+
+		& + .progress-bar {
+			border-left: solid 1px @black;
+		}
+
+		SPAN, I, B {
+			display: none;
+		}
+
+		&:hover {
+			SPAN, I, B {
+				.panelStyle;
+				font-size: @fontSize;
+				color: @white;
+				display: block;
+				position: absolute;
+				top: -26px;
+				white-space: nowrap;
+				padding: 4px 8px;
+				line-height: 12px;
+			}
+		}
+
+		&-success {
+			background-color: @green02;
+			&:hover {
+				background-color: lighten(@green02, 30%);
+			}
+		}
+		&-info {
+			background-color: @textColorInfo;
+			&:hover {
+				background-color: lighten(@textColorInfo, 30%);
+			}
+		}
+		&-danger {
+			background-color: @red02;
+			&:hover {
+				background-color: lighten(@red02, 30%);
+			}
+		}
+		&-warning {
+			background-color: @orange;
+			&:hover {
+				background-color: lighten(@orange, 30%);
+			}
+		}
+		@media print {
+			.printColor;
+			& + .progress-bar {
+				border-left: solid 3px @borderPrintZero;
+			}
+		}
+
+	}
+}

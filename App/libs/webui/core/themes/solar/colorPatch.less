@@ -1,0 +1,229 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    Legacy variables from the old theme.
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+// Background
+@background                  : @grey11; // #1b1b1d; // the background color for the BODY // light skin - #898989
+@bgColor1                    : darken(@grey06, 7.5%); // #242424; //DS - Gray (panel background, etc)
+@bgColor2                    : @grey10; // #181818; //DS - Gray (view background (ex. #EventContainer))
+@bgColor3                    : @grey06;// #363636; //ex. Calendar Days)
+@bgColor4                    : darken(@grey06, 4%); // #2e2e2e; //ex. Drop Down Open)
+@bgOverlay                   : darken(@grey06, 2%); // #323232;
+@bgBlack                     : @black; // #000000;
+
+@bgWarning                   : @orange; // #ff7f00;
+@bgInfo                      : @blue; // #2c85a7;
+@bgError                     : @red; // #fe0000;
+@bgSuccess                   : @green; // #35ae15;
+
+@bgIcon1                     : @grey01; // #e1e2e3;
+@bgIcon2                     : @grey03; // #999999;
+
+@highlightColor1             : @grey06; // #373737; //DS - light Gray, Highlight border/Shadow 1px inside section
+@highlightColor2             : @grey03; // #9b9b9b; //DS - light Gray, Highlight border/Shadow 1px inside Controls
+@highlightColor3             : fade(@black, 80%); // rgba(0,0,0,0.8); //background hight light with usage Zero text color (ex         : carousel caption)
+
+// Borders
+@borderColorZero             : @black; // #000; //DS - Black
+@borderColor1                : lighten(@grey10, 5%); // #202020; //common top border-color
+@borderColor2                : @grey06; // #363636; //common bottom border-color
+@borderColor3                : @grey10; // #1f1f1f; //divider in content section header/content, can be used in other areas
+@borderColor4                : lighten(@grey04, 5%); // #666666; // ex.Dialog
+
+// Alternative Backgroung color + border color mix
+
+@bgColorZero                 : lighten(@grey10, 5%); // #2d2d2f; //DS - Black
+@bgColorStyle1               : darken(@grey06, 2%); // #313131;
+@borderColorStyle1           : @black; // #000;//#1f5767 if original #004153;
+@shadowColorStyle1           : @grey04; // #575757;//#003240 if original #004153;
+// red #af1515 (ex           : alert tooltip)
+@bgColorStyle2               : darken(@red, 40%); // #872021;
+@borderColorStyle2           : (@bgColorStyle2 + #3b0000);//#fe0000  if original #af1515;
+@shadowColorStyle2           : @shadowColorZero;
+// green
+@bgColorStyle3               : @grey05; // #3d553b;
+@borderColorStyle3           : @grey06; // #394537;
+
+// Print Colors
+@textColorPrint              : @black; // #000;
+@textDisColorPrint           : @grey04; // #565656;
+@bgPrintZero                 : @white; // #fff;
+@bgPrint1                    : darken(@grey01, 7%); // #dfdfdf;
+@bgPrint2                    : lighten(@grey02, 4%); // #ccc;
+@bgPrint3                    : darken(@grey01, 8%); // #ddd;
+@borderPrintZero             : @black; // #000;
+@borderPrint1                : @grey06; // #333;
+
+// Text Colors
+@textColorZero               : @grey02; // #fff;
+@textColor                   : @grey01; // #8c8c8c; //DS - Light Gray
+@textColorDis                : @grey04; // lighten(#444444, 20%); // Disabled Color
+@textColorNeg                : @red; // #ff0000; // Red Color
+@textColorPos                : @green; // #3fff01; // Green Color
+@textColorInfo               : @blue; // #2c85a7; // Green Color
+
+@textColor1                  : darken(@green, 20%); // #488540; //DS - Dark Green
+@textColor2                  : @grey02; // #bfbfbf; //DS - Gray
+@textColor3                  : lighten(@grey03, 8%); // #aaa; //DS - Gray
+@textColor4                  : @orange; // #fd8000; //highlight color //orange
+@textColor5                  : lighten(@grey02, 8%); // #c7c7c7; //ex. Dialog title
+@textColor6                  : @white; // #fff; // notification color
+@textColor7                  : lighten(@grey03, 10%); // #adadad;
+
+// Links
+.link () {
+  .linkColor(@grey11, @blue, @blue);
+}
+
+.link1 () {
+  .linkColor(@grey02, @white, @white);
+}
+
+.link2 () {
+  .linkColor(@white, @grey02, @grey02);
+}
+.link-print () {
+  .linkColor(@textColorPrint, @textColorPrint, @textColorPrint);
+}
+
+// Controls (input, checkbox, SELECT, radio, etc.)
+@bgControl                   : @black; // #000000; // DS - Dark Gray
+@bgControl2                  : @grey06; // #363639; // DS - Medium Gray
+@bgControlHover              : darken(@orange, 63%); // #372403; // DS - Dark Orange
+@bgControlActive             : @orange; // #ff9933; //active shadow
+@textControlColor            : @grey02; // #bfbfbf; //DS - Gray
+@textControlActiveColor      : @grey01; // #e2e2e2; // White
+@borderControl               : @grey05; // #3c3c42;
+@borderControlFocus          : darken(@orange, 40%); // #c88039; // DS - Dark Orange
+@shadowControlColor1         : rgba(255, 255, 255, 0.05);
+@shadowControlColor2         : rgba(0,0,0,.6);
+
+//NOVA
+@borderControlHover          : @grey04; // #525254;
+
+//Checkbox & Radio
+@bgCheckbox                  : @bgControl; // DS - Light Gray
+@bgCheckboxDis               : darken(@grey06, 10%); // #2c2c2c; // DS - Light Gray
+@bgCheckboxHover             : fade(@orange, 50%); // rgba(255, 128, 0, .5);
+@textCheckbox                : lighten(@orange, 20%); // #ffac26; // DS - Light Orange
+@textCheckboxDis             : @grey03; // #999; // DS - Light Gray
+
+@bgShadowCheckbox1           : darken(@grey04, 5%); // #404040;
+@bgShadowCheckbox2           : rgba(0, 0, 0, .3);
+@bgShadowCheckbox3           : @grey10; // #1f1f1f;
+@bgShadowCheckbox4           : rgba(255, 255, 255, .1);
+@bgShadowCheckbox5           : @textCheckbox;
+
+@bgShadowCheckboxDis1        : lighten(@grey10, 8%); // #2e2e2e;
+@bgShadowCheckboxDis2        : (@bgShadowCheckboxDis1 - #181818);//#161616;
+@bgShadowCheckboxDis3        : (@bgShadowCheckboxDis1 - #080808);//#262626;
+@bgShadowCheckboxDis4        : (@bgShadowCheckboxDis1 + #060606);//#343434;
+
+//NOVA
+
+
+// Buttons
+@bgButtonColor1              : rgba(255, 255, 255, 0); //DS - Medium Gray
+@bgButtonColor2              : rgba(255, 255, 255, .05); //DS - Medium Gray
+@shadowButtonColor1          : rgba(255,255,255,0.1);
+@shadowButtonColor2          : darken(@grey06, 7%); // #242426;
+@shadowButtonColor3          : darken(@grey06, 6%); // #2d2d2f;
+@colorButtonActive           : @orange; // #ff8000;
+@colorButtonCta              : darken(@grey02, 1%); // #cfcfcf;
+@colorButtonCtaHover         : @white; // #fff;
+@colorButtonCta1             : darken(@colorButtonActive, 20%);
+@colorButtonCta2             : darken(@colorButtonActive, 10%);
+@bgButtonAlt1_1              : darken(@bgError, 10%);
+@bgButtonAlt1_2              : darken(@bgError, 20%);
+@bgButtonAlt2_1              : darken(@bgInfo, 10%);
+@bgButtonAlt2_2              : darken(@bgInfo, 20%);
+
+//NOVA
+@buttonBorderControl         : @grey11; // #0a0a0a;
+@bgButtonHover               : @grey05; // #3a3a3c;
+@colorButtonActiveNova       : @grey03; // #8c8c8c;
+
+// Select
+@shadowSelectColor1          : lighten(@grey03, 4%); // #9b9b9b;
+@shadowSelectFocusColor1     : darken(@orange, 80%); // #271902;
+
+
+//Table colors
+@bgTableHeader               : @WEBUI-table-header-bg; // 161616; //Table Header Row
+@bgTableRow1                 : (@bgTableHeader + #0e0e0e); //Table Row Zebra color 1 242424
+@bgTableRow2                 : (@bgTableHeader + #1b1b1b); //Table Row Zebra color 2 313131
+@bgTableRow3                 : (@bgTableHeader + #0a0a0a); //Table Row Zebra color 2 202020
+@bdTableRowExpanded          : (@bgTableHeader + #181818);
+@bgTableCellActive           : @WEBUI-table-bg-active; // #402903;
+@borderTableCellActive       : @WEBUI-table-border-active; // #ff8800;
+@borderSTable2Color1         : @borderColor2;
+@borderSTable3Color1         : @borderColor3;
+// Slick Grid Colors
+@bgTableSortIcon             : @WEBUI-table-border-active; // #F80;
+@bgTableCellHighlighted      : rgba(0, 0, 255, 0.2);
+@bgTableCellSorted           : @grey05; // #3c3c3c;
+@bgTableCellSortedHover      : (@bgTableCellSorted - #060606); //363636
+@borderSlickGridColor1       : @WEBUI-table-border; // #2d2d2d;
+@borderSlickGridColor2       : @WEBUI-table-border; // #1f1f1f;
+@resizableHandleColor        : @WEBUI-table-border; // #2d2d2d;
+// Handsontable
+@bgHTareaSelection           : fade(lighten(@orange, 40%), 90%); // rgba(255, 224, 178, 0.9);
+@bgHTMoveColumnColor         : @grey06; // #363636;
+@bgHTMoveResizerColor        : @grey04; // #666;
+@bgHTHeaderCellActiveColor   : @black; // #000;
+@borderHTareaSelection       : @WEBUI-table-border-active; // #ff9000;
+@borderHTColor               : @WEBUI-table-border; // @borderColor3;
+@borderHTcellSelectionColor1 : darken(@grey01, 8%); // #ddd;
+@borderHTcellSelectionColor2 : lighten(@orange, 40%); // #f1b56f;
+@borderHTFillColor           : @red; // #af1515;
+@textHTareaColor             : darken(@grey06, 8%); // #242424;
+@textHTReadOnlyColor         : darken(@grey03, 5%); // #777;
+
+// Scrollbars
+@bgScroll                    : @grey10; // #131313;// light skin - #898989;//
+@bgScrollZero                : @black; // #000;// light skin - #fff;//
+@bgScrollRgba1               : fade(@grey04, 50%); // rgba(85, 85, 85, .5);
+@borderScroll                : lighten(@bgScroll, 1%); // #161616;// light skin - #a3a3a3;//
+
+
+// Content Blocks
+@shadowColorZero             : rgba(0, 0, 0, .7);
+@shadowColorContent          : fade(@grey06, 60%); // rgba(58, 58, 58, .6);
+//content block header
+@bgContentHeader             : @grey06; // #242424;
+@borderContentHeader         : transparent; // #363636;
+//content block Sub header
+@bgContentSubHeader          : @grey10; // #1d1d1d;
+@borderContentSubHeader      : @black; // #000;
+@shadowColorSubHeader1       : @grey06; // #313131;
+@shadowColorSubHeader2       : lighten(@grey10, 4%); // #272727;
+
+// Arrows
+@arrowColor1                 : @green; // #3fff01;
+@arrowColor2                 : @red; // #ff0000;
+@arrowColor3                 : @orange; // #fd8000;
+@arrowColor4                 : @white; // #fff;
+
+// Menu
+@bgMenu                      : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAABACAMAAAAQ2sa4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFMzMzKCgoLCwsQ2AiAAAAABxJREFUeNpiYIIChlEGMgMOGKFglIHCgAGAAAMA4AEC6Q4W56kAAAAASUVORK5CYII=";
+@bgMenuItem                  : @black; // #000000;
+@textMenuColor1              : @textColor2;
+@textMenuHoverColor1         : @textColorZero;
+@textMenuColor2              : @textColor2;
+@textMenuHoverColor2         : @textColorZero;
+@shadowMenuColor1            : @borderColorZero;
+@shadowMenuColor2            : fade(@grey06, 70%); // rgba(48, 48, 48, 0.7);
+@shadowMenuColor3            : fade(@grey05, 70%); // rgba(72, 72, 72, 0.7);
+@shadowMenuColor3Proc        : 5%;
+@shadowMenuColor4            : darken(@shadowMenuColor2, 2%); // rgba(44, 44, 44, 0.7);
+@shadowMenuColor4Proc        : 11%;
+@shadowMenuColor5            : fade(lighten(@grey10, 8%), 70%); // rgba(36, 36, 36, 0.7);
+@shadowMenuColor5Proc        : 91%;
+@shadowMenuColor6            : fade(@grey10, 70%); // rgba(27, 27, 27, 0.7);
+@shadowMenuOrigin            : top;
+
+// Square checkbox
+@bgSquareCheckboxChecked     : @orange; // #ff8000;
+@bgSquareCheckboxHalfChecked : @grey03; // #909090;

@@ -1,0 +1,103 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+@import "../../../Icons/theme/@{schema}/icons_all.less";
+
+INPUT[type="text"],
+INPUT[type="search"],
+INPUT[type="number"],
+INPUT[type="email"],
+INPUT:not([type]) {
+	.layout(textfield);
+	.style(textfield);
+
+	&:not([type="search"])::-ms-clear {
+		display: none;
+	}
+
+}
+
+INPUT[type="search"] {
+  &:focus::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+  }
+	background-image: url('@{imageLocation}/@{schema}/search-icn.png');
+	background-repeat: no-repeat;
+	background-position: right 4px top 3px, 0 0;
+	background-position: -webkit-calc(100% - 4px) 3px, 0 0;
+    &::-webkit-search-cancel-button{
+      -webkit-appearance: none;
+    }
+	&:not([disabled]):hover {
+		color: @grey01;
+		background-image: url('@{imageLocation}/@{schema}/search-icn.png');
+		background-repeat: no-repeat;
+		background-position: right 4px top -14px, 0 0;
+		background-position: -webkit-calc(100% - 4px) -14px, 0 0;
+      &::-webkit-search-cancel-button{
+        -webkit-appearance: none;
+      }
+		&:valid {
+			background-image: none;
+		}
+	}
+
+	&:not([disabled]):focus, &:valid {
+		background-image: none;
+	}
+
+	&[disabled] {
+		background-position: right 4px top -65px, 0 0;
+		background-position: -webkit-calc(100% - 4px) -65px, 0 0;
+	}
+
+	&::-webkit-search-decoration {
+		.appearance;
+	}
+
+	&:focus::-webkit-search-cancel-button {
+		.appearance;
+		.icon-fix();
+		.icon-cross();
+		margin-right: 0;
+		cursor: pointer;
+		&::before {
+			font-size: calc(@fontSize - 2px);
+		}
+	}
+}
+
+@-moz-document url-prefix() {
+	INPUT[type="search"] {
+		background-position: right 4px top 3px, 0 0;
+		&:not([disabled]):hover {
+			background-position: right 4px top 3px, 0 0;
+		}
+	}
+	INPUT[type="number"] {
+	 -moz-appearance:textfield;
+	}
+
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	INPUT[type="number"] {
+		padding-right: 0;
+
+		&::-webkit-inner-spin-button {
+			.appearance;
+			opacity: 1 !important;
+			background-image: url('../images/@{schema}/num-spinner.png');
+			background-repeat: no-repeat;
+			background-position: 0 1px;
+			display: block;
+			width: 20px;
+			height: 20px;
+
+			&:hover {
+				background-position: 0 -19px;
+			}
+		}
+
+	}
+}

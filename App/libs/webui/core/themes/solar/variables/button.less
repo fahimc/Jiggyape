@@ -1,0 +1,132 @@
+.variables(button, @base: @grey05) {
+
+  .variables(global); // Get the global variables
+
+
+  // Begin: Inheritance
+  //------------------------
+
+  .variables(input);
+
+  //------------------------
+  // End: Inheritance
+
+
+  // Override base variables
+  // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+
+
+  // Begin: Layout variables
+  // -----------------------
+
+  @_height: 23px;
+  @_lineHeight: 19px;
+  @_paddingTop: 0;
+  @_paddingBottom: 0;
+  @_paddingLeft: 8px;
+  @_paddingRight: 8px;
+  @_padding: @_paddingTop @_paddingRight @_paddingBottom @_paddingLeft;
+  @_verticalAlign: middle;
+  @_fontSize: @fontSize;
+  @_white-space: nowrap;
+  @_display: inline-block;
+  @_overflow: hidden;
+
+  // -----------------------
+  // End: Layout variables
+
+
+  // Begin: Style variables
+  // -----------------------
+
+  @_fontWeight: normal;
+  @_cursor: pointer;
+  @_border: 1px solid @grey11;
+  @_borderTop: @_border;
+  @_borderRight: @_border;
+  @_borderBottom: @_border;
+  @_borderLeft: @_border;
+  @_borderRadius: 0;
+  @_font-family: @fontDefault;
+  @_boxSizing: border-box;
+
+  @_color: @grey02; // Overridden
+  @_backgroundColor: @base; // Overridden
+  @_boxShadow: inset 0 1px 0 0 fade(@white, 6%); // Overridden
+  @_backgroundImage: top, fade(@white, 10%) 0%, fade(@white, 0) 100%; //Overriden
+
+  // -----------------------
+  // End: Style variables
+
+  .hover() {
+    @_color: lighten(@grey02, 19%);
+    @_backgroundColor: lighten(@base, 8%);
+  }
+
+  .active() {
+    @_color: darken(@grey02, 15%);
+    @_boxShadow: none;
+    @_backgroundColor: @base;
+  }
+
+  .disabled() {
+    @_cursor: default;
+    @_opacity: 0.4;
+    @_outline: none;
+  }
+
+  .small() { // Small button
+    @_fontSize: (ceil(@fontSize * @_smallFactor));
+    @_height: (floor(23px * @_smallFactor));
+    @_paddingLeft: (floor(8px * @_smallFactor));
+    @_paddingRight: (floor(8px * @_smallFactor));
+    @_padding: @_paddingTop @_paddingRight @_paddingBottom @_paddingLeft;
+  }
+
+  .large() { // Large button
+    @_height: (floor(23px * @_largeFactor));
+    @_paddingLeft: (floor(8px * @_largeFactor));
+    @_paddingRight: (floor(8px * @_largeFactor));
+    @_padding: @_paddingTop @_paddingRight @_paddingBottom @_paddingLeft;
+  }
+
+  .image() {  // Button image
+    @_paddingTop: 2px;
+    @_paddingBottom: 2px;
+    @_paddingLeft: 2px;
+    @_paddingRight: 2px;
+    @_padding: @_paddingTop @_paddingRight @_paddingBottom @_paddingLeft;
+  }
+
+  .icon() { // Button icon
+    @_width: @_height;
+    @_position: relative;
+    @_boxSizing: border-box;
+    @_paddingTop: 3px;
+    @_paddingBottom: 0;
+    @_paddingLeft: 0;
+    @_paddingRight: 0;
+    @_padding: @_paddingTop @_paddingRight @_paddingBottom @_paddingLeft;
+
+    @_color: @grey03;
+  }
+}
+
+// Override variables based on background color
+.variables(button, @base: @grey06) when (lightness(@base) >= 50%) {
+
+  @_color: @grey11;
+  @_boxShadow: inset 0 1px 0 0 fade(@white, 16%);
+  @_gradientOverlay : top, fade(@white, 20%) 0%, fade(@white, 0) 100%;
+
+  .hover() {
+    @_color: @grey11;
+    @_backgroundColor: lighten(@base, 5%);
+  }
+
+  .active() {
+    @_color: @grey11;
+    @_boxShadow: none;
+    @_backgroundColor: @base;
+  }
+}

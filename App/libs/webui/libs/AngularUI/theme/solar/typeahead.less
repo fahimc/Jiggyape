@@ -1,0 +1,63 @@
+@import "../../../../core/webui.less";
+@import "../../../FormElements/theme/@{schema}/textfield.less";
+
+.ng-scope {
+	INPUT[typeahead] {
+		& + .dropdown-menu {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			z-index: 1000;
+			display: none;
+			float: left;
+			min-width: 182px;
+			max-height: 250px;
+			overflow: auto;
+			margin-top: 2px;
+			background-color: @grey06;
+			border: 1px solid @grey11;
+			.shadow;
+
+			&::-webkit-scrollbar-track, ::-webkit-scrollbar {
+				background: @grey06;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background-color: @grey10;
+				border: 1px solid @grey06;
+			}
+
+			&.pull-right {
+				right: 0;
+				left: auto;
+			}
+
+			LI {
+				&.active > A {
+					color: @text-hover;
+					background: @grey05;
+				}
+
+				& > A {
+					display: block;
+					padding: 8px 8px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					color: @text-default;
+					margin: 0;
+					cursor: pointer;
+					STRONG {
+						font-weight: normal;
+						color: @orange;
+						// background-color: @orange01;
+					}
+
+					&:hover {
+						color: @text-hover;
+						background: @grey05;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,51 @@
+@import "../../../../core/webui.less";
+.alert-tooltip (@_: o) { // Added this to fix compilation bug
+	display:none;
+	padding: 3px 8px;
+	background-color: @grey10;
+	border:solid 1px @black;
+	position: absolute;
+	z-index:100;
+	font-size: (@fontSize - 2);
+	.shadow;
+
+	&:before, &:after {
+		top: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	&:after {
+		border-color: rgba(136, 183, 213, 0);
+		border-top-color: @grey10;
+		border-width: 6px;
+		margin-left: -39px;
+	}
+
+	&:before {
+		border-color: rgba(194, 225, 245, 0);
+		border-top-color: @black;
+		border-width: 7px;
+		margin-left: -40px;
+	}
+
+	&.alert-right-pos:before {
+		left:initial;
+		right:4px;
+	}
+	&-text {
+		color: @text-default;
+		@media print {
+			color:@textColorPrint;
+		}
+	}
+}
+
+.alert-tooltip {
+	.alert-tooltip(o); // Added argument to prevent stack overflow when mixin and cssClass is the same
+}

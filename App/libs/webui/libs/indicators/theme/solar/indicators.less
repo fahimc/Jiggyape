@@ -1,0 +1,61 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+.indicator-style(){
+  .shadow(inset 0 0px 1px 0 @text-default);
+}
+
+.indicator-1-pos {
+  display:inline-block;
+  padding-right:8px;
+  position:relative;
+  line-height:1.4em;
+  &::after{
+    content:'';
+    display:inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    width:4px;
+    .indicator-style();
+    background-color:@green;
+    .printColor;
+  }
+}
+.indicator-1-neutral {
+  display:inline-block;
+  padding-right:8px;
+  position:relative;
+  line-height:1.4em;
+  &::after{
+    content:'';
+    display:inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    width:4px;
+    .indicator-style();
+    background-color:@orange;
+    .printColor;
+  }
+}
+.indicator-1-neg {
+  display:inline-block;
+  padding-right:8px;
+  position:relative;
+  line-height:1.4em;
+  &::after{
+    content:'';
+    display:inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    width:4px;
+    .indicator-style();
+    background-color:@red;
+    .printColor;
+  }
+}

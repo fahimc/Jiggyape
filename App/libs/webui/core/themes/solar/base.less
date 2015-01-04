@@ -1,0 +1,134 @@
+
+// Eikon Container
+html {
+  schema: @schema;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: @fontDefault;
+  font-size: @fontSize;
+  color: @text-default;
+  .userSelect;
+
+  &.eikon {
+    background: @grey11;
+    overflow: hidden;
+    position: relative;
+    min-height: 400px;
+    min-width: 600px;
+    height: 100%;
+
+    body {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      bottom: 5px;
+      left: 5px;
+      border: 1px solid @grey06;
+      overflow: auto;
+      .shadow(0px 0px 5px @black);
+    }
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: @grey10;
+  }
+  @media print {
+    color:@black;
+    .printColor(economy);
+    -webkit-filter:opacity(1);
+  }
+}
+
+body * {
+  @media print {
+    box-shadow:none !important;
+    text-shadow:none !important;
+  }
+}
+
+ul {
+  list-style-type:none;
+  padding: 0;
+  margin: 0;
+}
+
+body ol li, body ul li {
+  line-height:normal
+}
+
+// TODO: Sort this out
+ul.bulleted-list {
+  & > li {
+    padding:4px 0px 4px 12px;
+
+    &:before {
+      content: "";
+      display: inline-block;
+      height: 0;
+      width: 0;
+      border: solid 2px @grey02;
+      margin-left: -11px;
+      margin-right: 6px;
+      vertical-align: top;
+      margin-top: 6px;
+      @media print {
+        border-color:@black;
+      }
+    }
+  }
+}
+
+p {
+  margin: 0 0 20px 0;
+}
+
+table {
+  border-collapse:collapse;
+  border-spacing:0;
+}
+
+img {
+  border:0
+}
+
+hr {
+  border:0;
+  border-top: solid 1px @grey10;
+  border-bottom: solid 1px @grey06;
+  @media print {
+    border-bottom:0;
+    border-top:solid 1px @black;
+  }
+}
+
+@media print {
+  .print-no {
+    display:none !important;
+  }
+}
+
+*::-webkit-scrollbar-corner, *::-webkit-scrollbar {
+    background: @grey10;
+}
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: @grey04;
+    // border-left: 1px solid #1e1e20;
+    // border-top: 1px solid #1e1e20;
+    // border-bottom: 1px solid #1e1e20;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: @grey01;
+}
+*::-webkit-scrollbar-thumb:active {
+    background-color: @orange;
+}
+*::-webkit-scrollbar-track {
+    background-color: @grey10;
+}

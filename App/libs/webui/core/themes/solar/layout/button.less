@@ -1,0 +1,41 @@
+.layout (button) {
+
+  // Get the variables for button
+  .variables(button);
+
+  height: @_height;
+  line-height: @_lineHeight;
+  padding: @_padding;
+  vertical-align: @_verticalAlign;
+  font-size: @_fontSize;
+  white-space: @_whiteSpace;
+  display: @_display;
+  overflow: @_overflow;
+
+  &.button-style-l {
+    .large;
+    height: @_height;
+    padding: @_padding;
+  }
+
+  &.button-style-s {
+    .small;
+    font-size: @_fontSize;
+    height: @_height;
+    padding: @_padding;
+  }
+
+  &.button-image {
+    .image;
+    padding: @_padding;
+  }
+
+  &.icon {
+    .icon;
+    width: @_width;
+    position: @_position;
+    box-sizing: @_boxSizing;
+    padding: @_padding;
+  }
+
+}

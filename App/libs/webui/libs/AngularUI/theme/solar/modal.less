@@ -1,0 +1,67 @@
+@import "../../../../core/webui.less";
+
+@import "global.less";
+@import "../../../FormElements/theme/@{schema}/button.less";
+
+.modal {
+	position: fixed;
+	top: 10%;
+	left: 50%;
+	z-index: 1050;
+	min-width: 560px;
+	margin-left: -280px;
+
+	.shadow(0 0 40px fade(@black, 40%));
+	background-color: @grey10;
+	border: solid 3px @black;
+
+
+	&-header {
+		position:relative;
+		padding: 6px 0px 0px 5px;
+
+		color:@text-default;
+		background-color: @grey07;
+		.grad-overlay-03;
+
+		height: 27px;
+		line-height: 27px;
+
+		font-size: @fontSize;
+		font-weight:bold;
+		text-transform: uppercase;
+
+		box-sizing: border-box;
+		border-bottom: solid 1px @black;
+
+		& > H3 {
+			font-size:12px;
+			font-weight:bold;
+			margin: 0;
+		}
+	}
+	&-body {
+		padding:8px;
+	}
+	&-footer {
+		padding:8px 4px 8px 4px;
+		text-align:right;
+		background-color: darken(@grey06, 12%);
+		border-top: solid 1px @black;
+		.btn {
+			min-width:50px;
+			// margin-left:8px;
+		}
+	}
+	&-backdrop {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color:@black;
+		&.fade.in {
+			opacity:0.5;
+		}
+	}
+}

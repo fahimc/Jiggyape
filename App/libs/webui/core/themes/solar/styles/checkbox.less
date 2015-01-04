@@ -1,0 +1,88 @@
+.style (checkbox) {
+	.style(input);
+
+	display: none ;
+
+	+ label {
+		color: @grey02;
+		padding-left:26px;
+		position: relative;
+		&::before {
+			.style(input);
+			content: "";
+			line-height: 12px;
+			padding: 0 !important;
+			width: 11px !important;
+			height: 11px !important;
+			position: absolute;
+			top: 50%;
+			margin-top: -7px;
+			left: 4px;
+			vertical-align: text-top;
+			outline:0;
+			background: @bgControl;
+		}
+		&:hover::before {
+      border-color: @WEBUI-input-border-hover;
+		}
+	}
+
+	&:focus + label::before {
+		border: 1px dotted @orange;
+     outline: none;
+	}
+
+	&:hover {
+		+ label {
+			color: @grey01;
+		}
+	}
+
+	&:checked {
+		&::after, + label::after {
+			content: '';
+			position: absolute;
+			width: 10px;
+			height: 8px;
+			top: 50%;
+			margin-top: -4px;
+			left: 1px;
+			background-image: url(@checkBoxTick);
+		}
+		+ label {
+			color: @orange;
+			&::after {
+				left: 6px;
+			}
+		}
+	}
+
+	&.square-shape {
+		&:checked::after, + label::after {
+			content: '';
+			margin-top: -3px;
+			left: 3px;
+			background-color: #F93;
+			width: 5px;
+			height: 5px;
+			background-image: none;
+		}
+		+ label::after {
+			left: 8px;
+		}
+		&.partly-checked {
+			&:checked::after, + label::after {
+				background-color: @grey04;
+			}
+		}
+	}
+
+	&[disabled] {
+		background: @bgControl;
+		.shadow(none);
+		opacity: 0.4;
+		+ label {
+			opacity: 0.4;
+		}
+	}
+}

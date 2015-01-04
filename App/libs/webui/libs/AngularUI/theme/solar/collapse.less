@@ -1,0 +1,30 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+
+.collapse {
+	display:none;
+	position: relative;
+	padding:0;
+	margin:0;
+
+	&.in {
+		display:block;
+	}
+
+	&-content {
+      border:solid 1px @black;
+      background-color: @grey06;
+      padding:5px 8px;
+      .shadow;
+	}
+}
+.collapsing {
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	padding:0;
+	margin:0;
+	.transition(height 0.2s ease);
+}
+

@@ -1,0 +1,119 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+	INTERNAL VARIABLES FOR WEBUI USE ONLY!! Not for use by 3rd party
+	applications where {less} has been downloaded
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+/* BASE
+----------------------------*/
+
+@text-default             : @grey02;
+@text-hover               : @grey01;
+
+
+
+.gradient(@options) {
+    background-image: -webkit-linear-gradient(@options);
+    background-image: -moz-linear-gradient(@options);
+    background-image: -ms-linear-gradient(@options);
+    background-image: -o-linear-gradient(@options);
+}
+
+// Mainly used for buttons
+.grad-overlay-01 {
+    background-image: -webkit-linear-gradient(top, fade(@white, 10%) 0%, fade(@white, 0) 100%);
+    background-image: -moz-linear-gradient(top, fade(@white, 10%) 0%, fade(@white, 0) 100%);
+    background-image: -o-linear-gradient(top, fade(@white, 10%) 0%, fade(@white, 0) 100%);
+    background-image: linear-gradient(to bottom, fade(@white, 10%) 0%, fade(@white, 0) 100%);
+}
+
+.grad-overlay-02 {
+    background-image: -webkit-linear-gradient(top, fade(@white, 3%) 0%, fade(@white, 0%) 100%);
+    background-image: -moz-linear-gradient(top, fade(@white, 3%) 0%, fade(@white, 0%) 100%);
+    background-image: -o-linear-gradient(top, fade(@white, 3%) 0%, fade(@white, 0%) 100%);
+    background-image: linear-gradient(to bottom, fade(@white, 3%) 0%, fade(@white, 0%) 100%);
+}
+
+.grad-overlay-03 {
+    background-image: -webkit-linear-gradient(top, fade(@black, 10%) 0%, fade(@black, 0%) 100%);
+    background-image: -moz-linear-gradient(top, fade(@black, 10%) 0%, fade(@black, 0%) 100%);
+    background-image: -o-linear-gradient(top, fade(@black, 10%) 0%, fade(@black, 0%) 100%);
+    background-image: linear-gradient(to bottom, fade(@black, 10%) 0%, fade(@black, 0%) 100%);
+}
+
+.grad-overlay-03(reverse) {
+    background-image: -webkit-linear-gradient(top, fade(@black, 0%) 0%, fade(@black, 10%) 100%);
+    background-image: -moz-linear-gradient(top, fade(@black, 0%) 0%, fade(@black, 10%) 100%);
+    background-image: -o-linear-gradient(top, fade(@black, 0%) 0%, fade(@black, 10%) 100%);
+    background-image: linear-gradient(to bottom, fade(@black, 0%) 0%, fade(@black, 10%) 100%);
+}
+
+
+
+
+/* CONTROLS
+----------------------------*/
+
+@control-txt              : @grey02;
+@control-txt-hover        : lighten(@control-txt, 19%);
+@control-txt-active       : darken(@control-txt, 15%);
+
+
+/* BUTTONS
+----------------------------*/
+
+@WEBUI-btn-bg             : @grey05;
+@WEBUI-btn-border         : @grey11;
+
+@WEBUI-btn-txt-light      : @grey11;
+@WEBUI-btn-txt-light-hover: @black;
+
+/* INPUTS
+----------------------------*/
+
+@WEBUI-input-bg           : @black;
+
+@WEBUI-input-border       : @grey05;
+@WEBUI-input-border-hover : lighten(@grey05, 10%);
+
+
+/* MENUS
+----------------------------*/
+
+
+/* TABLES/GRIDS
+----------------------------*/
+
+@WEBUI-table-bg:                @grey10;
+@WEBUI-table-bg-hover:          lighten(@WEBUI-table-bg, 3%);
+@WEBUI-table-bg-active:         darken(saturate(@orange, -80%), 49%);
+
+@WEBUI-table-header-bg:         darken(@grey06, 10%);
+@WEBUI-table-header-bg-hover:   lighten(@WEBUI-table-header-bg, 3%);
+
+@WEBUI-table-border:            @grey11;
+@WEBUI-table-border-active:     @orange;
+
+@WEBUI-table-header-txt:        @grey03;
+@WEBUI-table-header-txt-sort:   @orange;
+
+
+/* LAYOUT
+----------------------------*/
+
+@WEBUI-header-bg: @grey06;
+
+@hdr-height-l1: 29px;
+@hdr-font-l1: 13px;
+
+@hdr-txt-color: @grey01;
+
+
+
+/* DATA
+----------------------------*/
+
+@checkBoxTick : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAIAQMAAAD6NPz1AAAABlBMVEUAAAD/mTMErN1nAAAAAXRSTlMAQObYZgAAACBJREFUCNdjYHBgYGhgYGRgYGJgYGFg6GBgCGBgUGAAABWBAcCPbx5tAAAAAElFTkSuQmCC";
+

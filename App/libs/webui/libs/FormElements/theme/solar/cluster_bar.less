@@ -1,0 +1,22 @@
+@import "../../../../core/webui.less";
+
+.clustered-bar-wr {
+	// .border-radius;
+	// border:solid 1px @borderColorZero;
+	// .shadow(inset 0 0 3px 1px @shadowControlColor1, 0 0 2px @shadowControlColor2);
+	vertical-align:middle;
+	background-color: @black;
+
+	.clustered-bar {
+		// .border-top-left-radius;
+		// .border-bottom-left-radius;
+		height:5px;
+		background-color:@green;
+		// .shadow(inset 0 -2px 3px 1px @shadowControlColor1);
+		.printColor;
+	}
+
+	@media print {
+		border-color:@borderPrintZero;
+	}
+}

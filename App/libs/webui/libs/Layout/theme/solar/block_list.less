@@ -1,0 +1,85 @@
+@import "../../../../core/webui.less";
+
+.block-list {
+	border: 1px solid @WEBUI-table-border;
+
+	h2 {
+		color: @grey01;
+		font-size: 15px;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	&.news {
+		border: none;
+
+		.block-list-item {
+
+			&:last-child {
+				& .l-table-cell:last-child {
+					border: none;
+				}
+			}
+
+			background: none;
+			border: none;
+
+			&.content-spacer {
+				padding-bottom: 0;
+			}
+
+			& .l-table-cell:last-child {
+				border-bottom: 1px solid @WEBUI-table-border;
+				width: 100%;
+			}
+		}
+	}
+
+	&-item {
+		border-bottom: solid 1px @WEBUI-table-border;
+		font-size: @fontSize;
+		background: @grey10;
+
+		@media print {
+			border-top: 0;
+			border-bottom-color: @borderPrintZero;
+		}
+
+		&:first-child {
+			border-top: 0;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		IMG {
+			padding-right: 10px;
+		}
+
+		.block-list-link {
+			font-size: (@fontSize + 2px);
+			font-weight: bold;
+    		text-transform: uppercase;
+    		margin-bottom: 5px;
+    		display: inline-block;
+		}
+
+		p {
+			margin: 0;
+		}
+
+		.plain-list1 LI {
+			padding-bottom: 2px;
+		}
+
+		.flowing-img-wrap {
+			float: left;
+		}
+
+		.text-style-header1{
+			margin-top: 0;
+			margin-bottom: 5px;
+		}
+	}
+}

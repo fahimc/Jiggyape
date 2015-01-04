@@ -1,0 +1,83 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+@import "../../../Icons/theme/@{schema}/icons_all.less";
+
+.ng-scope {
+	.alert {
+		padding: 0 28px 0 8px;
+		position:relative;
+		background-color: @grey05;
+		color: @text-default;
+        font-weight: bold;
+		margin:4px;
+        text-align: center;
+        .shadow;
+
+        div {
+          span {
+            display:inline-block;
+            margin: 20px 50px 20px 50px;
+          }
+        }
+
+		&-error {
+			background-color: darken(@red, 20%);
+		}
+
+		&-success {
+			background: darken(@green, 20%);
+		}
+
+        &-update {
+          background-color: darken(@blue, 20%);
+        }
+
+        &-warn {
+          background-color: darken(@orange, 30%);
+        }
+
+        &-message {
+          background-color: @grey05;
+        }
+
+		.sr-only {
+		    position: absolute;
+		    width: 1px;
+		    height: 1px;
+		    margin: -1px;
+		    padding: 0;
+		    overflow: hidden;
+		    clip: rect(0, 0, 0, 0);
+		    border: 0;
+		}
+
+
+        // TODO: hack
+        button.close:not(.disabled):hover, button.close:not(.disabled):active{
+          background-color: transparent !important;
+          color: @text-hover !important;
+          background-image: none !important;
+        }
+
+    	.close {
+			.buttonResetStyle();
+            position:absolute;
+            top: 2px;
+            right: 2px;
+            color: @black;
+			padding: 0;
+			line-height: 15px;
+            // text-indent: -9999px;
+
+            span:first-child {
+                .icon-fix();
+                .icon-cross-mini();
+            }
+		}
+
+		@media print {
+			color:@textColorPrint !important;
+			border:solid 1px @borderPrint1 !important;
+		}
+	}
+}

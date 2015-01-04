@@ -1,0 +1,157 @@
+@import "../../../../core/webui.less";
+@import "../../../../utils/style.less";
+
+.carousel {
+	position: relative;
+
+	.stand-alone & {
+		.panelStyle();
+		padding:4px 1px 1px;
+	}
+
+	&-inner {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+
+		& > .item {
+			position: relative;
+			display: none;
+			.transition (0.6s ease-in-out left);
+
+			& > IMG {
+				display: block;
+				line-height: 1;
+			}
+		}
+
+		& > .active {
+			display: block;
+			left: 0;
+			&.left {
+				left: -100%;
+			}
+			&.right {
+				left: 100%;
+			}
+		}
+
+		& > .next {
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			left: 100%;
+
+			&.left {
+				left: 0;
+			}
+		}
+
+		& > .prev {
+			display: block;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			left: -100%;
+			&.right {
+				left: 0;
+			}
+		}
+	} //&-inner end
+
+	&-control {
+		.arrow(7px 11px);
+		position:absolute;
+		top:40%;
+		left:8px;
+		width:30px;
+		height:30px;
+		margin-top:-15px;
+		.buttonStyle;
+		font-size:0px;
+		.border-radius(15px);
+		opacity: 0.5;
+		cursor:pointer;
+
+		&::after {
+			border-right-color:@textControlColor;
+			top:7px;
+			right:12px;
+		}
+
+		&:hover {
+			.buttonStyleActive;
+			opacity:0.9;
+			&::after {
+				border-right-color:@textControlActiveColor;
+			}
+		}
+
+		&.right {
+			right: 15px;
+			left: auto;
+			&::after {
+				border-left-color:@textControlColor;
+				border-right:0;
+				right:8px;
+			}
+			&:hover {
+				&::after {
+					border-left-color:@textControlActiveColor;
+				}
+			}
+		}
+	} //&-control end
+
+	&-caption {
+		position:absolute;
+		right:0;
+		bottom:0;
+		left:0;
+		padding:4px 8px;
+		background:@highlightColor3;
+
+		P {
+			line-height: 20px;
+			color:@textColorZero;
+			@media print {
+				color:@textColorPrint;
+			}
+		}
+	}
+
+	&-indicators {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		z-index: 5;
+		margin: 0;
+		list-style: none;
+
+		& > LI {
+			display: block;
+			float: left;
+			width: 10px;
+			height: 10px;
+			margin-left: 5px;
+			text-indent: -999px;
+			background-color:@textColorDis;
+			border-radius: 5px;
+			cursor:pointer;
+			opacity:0.6;
+			&:hover {
+				background-color:@textColor;
+			}
+			&.active {
+				background-color:@textColor4;
+			}
+		}
+
+	}
+	@media print {
+
+	}
+
+
+}
