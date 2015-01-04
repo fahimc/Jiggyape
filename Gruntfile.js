@@ -122,13 +122,13 @@ module.exports = function(grunt) {
           livereload: true,
           base: 'Dist/',
           port: config.port,
-          hostname: '0.0.0.0',
+          hostname: 'localhost',
           open: true,
         },
         livereload: {
           options: {
             open: {
-              target: 'http://0.0.0.0:'+  config.port
+              target: 'http://localhost:'+  config.port
             },
             base: [
             'Dist'

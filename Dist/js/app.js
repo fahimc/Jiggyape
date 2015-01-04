@@ -229,11 +229,16 @@ function(){this.$get=function(){return{}}});n.directive("ngView",x);n.directive(
 //# sourceMappingURL=angular-route.min.js.map
 
 angular.module('app', []);
-var app = angular.module('.', ['ngRoute', 'app']);app.config(['$routeProvider',	function ($routeProvider) {		$routeProvider.when('/', {			controller: 'appController',			templateUrl: 'src/modules/appModule/templates/home.html'		})		.otherwise({			redirectTo: '/'		});	}]);
+'use strict';
+angular.module('list', []);
+
+'use strict';
+angular.module('nav', []);
+
+var app = angular.module('.', ['ngRoute', 'app','nav','list']);app.config(['$routeProvider',	function ($routeProvider) {		$routeProvider.when('/', {			controller: 'appController',			templateUrl: 'src/modules/appModule/templates/home.html'		})		.otherwise({			redirectTo: '/'		});	}]);
 'use strict';
 
-app.controller('appController', function ($scope, $rootScope) {
-
+app.controller('appController', function ($scope, $rootScope,youtubeService) {
 	$scope.appName = 'Base Structure';
 
 });
@@ -246,4 +251,168 @@ angular.module('app').directive('appView', function() {
         templateUrl: 'src/modules/appModule/templates/app.html'
     };
 
+});
+'use strict';
+angular.module('app').factory('appModel',function(){
+
+	var appModel=
+	{
+		
+	};
+
+	return appModel;
+
+});
+
+'use strict';
+angular.module('app').factory('youtubeService',function($rootScope){
+
+	var youtubeService=
+	{
+		OAUTH2_CLIENT_ID : '466692777175-fefe15fi3ltau8bqvdtdprr2pdc2os55.apps.googleusercontent.com',
+		OAUTH2_SCOPES : [
+		'https://www.googleapis.com/auth/youtube'
+		],
+		resultsCollection:null,
+		init:function(){
+			if(!window.youtubeReady)
+			{
+				window.googleApiClientReady=this.googleApiClientReady.bind(this);
+			}else{
+				this.googleApiClientReady();
+			}
+		},
+		googleApiClientReady:function(){
+			gapi.auth.init(function() {
+				window.setTimeout(youtubeService.checkAuth.bind(youtubeService), 1);
+			});
+		},
+		checkAuth:function() {
+			
+			gapi.auth.authorize({
+				client_id: this.OAUTH2_CLIENT_ID,
+				scope: this.OAUTH2_SCOPES,
+				immediate:true
+			}, this.handleAuthResult.bind(this));
+			
+		},
+		handleAuthResult:function(result){
+			if(result.error)
+			{
+				gapi.auth.authorize({
+				client_id: this.OAUTH2_CLIENT_ID,
+				scope: this.OAUTH2_SCOPES,
+				approval_prompt: 'auto',
+				authuser: -1
+			}, this.handleAuthResult.bind(this));
+			}
+			gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
+		},
+		onYoutubeLoaded:function(){
+			
+		},
+		search:function(value,callback){
+			var request = gapi.client.youtube.search.list({
+				q: value,
+				part: 'snippet',
+				type:'video',
+				maxResults:50
+			});
+
+			request.execute(function(response) {
+				//youtubeService.resultsCollection =response.result; 
+				$rootScope.$broadcast('RESULTS',{results:response.result.items});
+				//callback(response.result);
+			});
+		}
+
+
+	};
+
+	youtubeService.init();
+
+	return youtubeService;
+
+});
+
+'use strict';
+angular.module('list').controller('listController',function($scope,youtubeService,$rootScope){
+
+	var listController=
+	{
+		init:function(){
+			$scope.onItemClick=this.onItemClick.bind(this);
+			$rootScope.$on('RESULTS',this.onResults.bind(this));
+		},
+		onResults:function(event,data){
+			$scope.results = data.results;
+			console.log($scope.results);
+			$scope.$apply();
+		},
+		onItemClick:function(id){
+			console.log('id',id);
+		}
+
+	};
+
+	listController.init();
+
+	return listController;
+
+});
+
+'use strict';
+
+angular.module('list').directive('list', function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: 'src/modules/listModule/templates/list.html',
+		scope: {
+
+		},
+		controller: 'listController'
+	}
+});
+
+'use strict';
+angular.module('nav').controller('navController',function($scope,youtubeService){
+
+	var navController=
+	{
+		init:function(){
+			$scope.onKey=this.onKey.bind(this);
+		},
+		onKey:function($event){
+			if($event.keyCode==13)
+			{
+				youtubeService.search($scope.searchValue,this.onResults.bind(this));
+			}
+
+		},
+		onResults:function(results){
+			console.log(results);
+		}
+
+
+	};
+
+	navController.init();
+
+	return navController;
+
+});
+
+'use strict';
+
+angular.module('nav').directive('nav', function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: 'src/modules/navModule/templates/nav.html',
+		scope: {
+
+		},
+		controller: 'navController'
+	}
 });
