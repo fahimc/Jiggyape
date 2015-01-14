@@ -8,6 +8,7 @@ angular.module('app').factory('youtubeService',function($rootScope){
 		'https://www.googleapis.com/auth/youtube'
 		],
 		resultsCollection:null,
+		authCallback:null,
 		init:function(){
 			if(!window.youtubeReady)
 			{
@@ -31,16 +32,26 @@ angular.module('app').factory('youtubeService',function($rootScope){
 			
 		},
 		handleAuthResult:function(result){
-			if(result.error)
+			if(result & result.error)
 			{
+				this.authCallback();
 				gapi.auth.authorize({
-				client_id: this.OAUTH2_CLIENT_ID,
-				scope: this.OAUTH2_SCOPES,
-				approval_prompt: 'auto',
-				authuser: -1
-			}, this.handleAuthResult.bind(this));
+					client_id: this.OAUTH2_CLIENT_ID,
+					scope: this.OAUTH2_SCOPES,
+					immediate:false
+				}, this.handleAuthResult.bind(this));
+			}else{
+				gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
+				
 			}
-			gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
+		},
+		manualAuth:function(){
+			gapi.auth.authorize({
+					client_id: this.OAUTH2_CLIENT_ID,
+					scope: this.OAUTH2_SCOPES,
+					approval_prompt: 'auto',
+					authuser: -1
+				}, this.handleAuthResult.bind(this));
 		},
 		onYoutubeLoaded:function(){
 			console.log('onYoutubeLoaded');

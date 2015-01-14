@@ -246,7 +246,19 @@ var app = angular.module('.', ['ngRoute', 'app','nav','list','playlist','player'
 
 app.controller('appController', function ($scope, $rootScope,youtubeService) {
 	$scope.appName = 'Jiggyape';
+	$scope.needAuth = false;
 	var ready=[];
+	youtubeService.authCallback=needAuthCallback;
+	$scope.onAuthClick=function(){
+		youtubeService.handleAuthResult();
+	}
+
+	function needAuthCallback(){
+		console.log('needAuth');
+		$scope.appReady=false;
+		$scope.needAuth=true;
+		if (!$scope.$$phase) $scope.$apply();
+	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
 		ready.push(true);
 		check();
@@ -256,7 +268,7 @@ app.controller('appController', function ($scope, $rootScope,youtubeService) {
 		check();
 	});
 	function check(){
-		if(ready.length>1){
+		if(!$scope.needAuth && ready.length>1){
 			$scope.appReady=true;
 			if (!$scope.$$phase) $scope.$apply();
 		}
@@ -294,6 +306,7 @@ angular.module('app').factory('youtubeService',function($rootScope){
 		'https://www.googleapis.com/auth/youtube'
 		],
 		resultsCollection:null,
+		authCallback:null,
 		init:function(){
 			if(!window.youtubeReady)
 			{
@@ -319,14 +332,24 @@ angular.module('app').factory('youtubeService',function($rootScope){
 		handleAuthResult:function(result){
 			if(result.error)
 			{
+				this.authCallback();
 				gapi.auth.authorize({
-				client_id: this.OAUTH2_CLIENT_ID,
-				scope: this.OAUTH2_SCOPES,
-				approval_prompt: 'auto',
-				authuser: -1
-			}, this.handleAuthResult.bind(this));
+					client_id: this.OAUTH2_CLIENT_ID,
+					scope: this.OAUTH2_SCOPES,
+					immediate:false
+				}, this.handleAuthResult.bind(this));
+			}else{
+				gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
+				
 			}
-			gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
+		},
+		manualAuth:function(){
+			gapi.auth.authorize({
+					client_id: this.OAUTH2_CLIENT_ID,
+					scope: this.OAUTH2_SCOPES,
+					approval_prompt: 'auto',
+					authuser: -1
+				}, this.handleAuthResult.bind(this));
 		},
 		onYoutubeLoaded:function(){
 			console.log('onYoutubeLoaded');
