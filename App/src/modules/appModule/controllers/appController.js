@@ -1,18 +1,18 @@
 'use strict';
 
-app.controller('appController', function ($scope, $rootScope,youtubeService) {
+app.controller('appController', function ($scope, $rootScope,youtubeService,youtubePlayerService) {
 	$scope.appName = 'Jiggyape';
-	$scope.needAuth = false;
+	$rootScope.needAuth = false;
 	var ready=[];
 	youtubeService.authCallback=needAuthCallback;
 	$scope.onAuthClick=function(){
-		youtubeService.handleAuthResult();
+		youtubeService.manualAuth();
 	}
 
 	function needAuthCallback(){
 		console.log('needAuth');
-		$scope.appReady=false;
-		$scope.needAuth=true;
+		$rootScope.appReady=false;
+		$rootScope.needAuth=true;
 		if (!$scope.$$phase) $scope.$apply();
 	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
@@ -23,9 +23,20 @@ app.controller('appController', function ($scope, $rootScope,youtubeService) {
 		ready.push(true);
 		check();
 	});
+
+	$scope.playVideo=function(){
+		youtubePlayerService.playVideo(youtubePlayerService.index);
+	};
+
+	$scope.nextVideo=function(){
+		youtubePlayerService.nextVideo();
+	};
+	$scope.previousVideo=function(){
+		youtubePlayerService.previousVideo();
+	};
 	function check(){
-		if(!$scope.needAuth && ready.length>1){
-			$scope.appReady=true;
+		if(!$rootScope.needAuth && ready.length>1){
+			$rootScope.appReady=true;
 			if (!$scope.$$phase) $scope.$apply();
 		}
 	}

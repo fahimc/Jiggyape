@@ -244,19 +244,19 @@ angular.module('playlist', []);
 var app = angular.module('.', ['ngRoute', 'app','nav','list','playlist','player']);app.config(['$routeProvider',	function ($routeProvider) {		$routeProvider.when('/', {			controller: 'appController',			templateUrl: 'src/modules/appModule/templates/home.html'		})		.otherwise({			redirectTo: '/'		});	}]);
 'use strict';
 
-app.controller('appController', function ($scope, $rootScope,youtubeService) {
+app.controller('appController', function ($scope, $rootScope,youtubeService,youtubePlayerService) {
 	$scope.appName = 'Jiggyape';
-	$scope.needAuth = false;
+	$rootScope.needAuth = false;
 	var ready=[];
 	youtubeService.authCallback=needAuthCallback;
 	$scope.onAuthClick=function(){
-		youtubeService.handleAuthResult();
+		youtubeService.manualAuth();
 	}
 
 	function needAuthCallback(){
 		console.log('needAuth');
-		$scope.appReady=false;
-		$scope.needAuth=true;
+		$rootScope.appReady=false;
+		$rootScope.needAuth=true;
 		if (!$scope.$$phase) $scope.$apply();
 	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
@@ -267,9 +267,20 @@ app.controller('appController', function ($scope, $rootScope,youtubeService) {
 		ready.push(true);
 		check();
 	});
+
+	$scope.playVideo=function(){
+		youtubePlayerService.playVideo(youtubePlayerService.index);
+	};
+
+	$scope.nextVideo=function(){
+		youtubePlayerService.nextVideo();
+	};
+	$scope.previousVideo=function(){
+		youtubePlayerService.previousVideo();
+	};
 	function check(){
-		if(!$scope.needAuth && ready.length>1){
-			$scope.appReady=true;
+		if(!$rootScope.needAuth && ready.length>1){
+			$rootScope.appReady=true;
 			if (!$scope.$$phase) $scope.$apply();
 		}
 	}
@@ -330,14 +341,14 @@ angular.module('app').factory('youtubeService',function($rootScope){
 			
 		},
 		handleAuthResult:function(result){
-			if(result.error)
+			if(result && result.error)
 			{
 				this.authCallback();
-				gapi.auth.authorize({
+				/*gapi.auth.authorize({
 					client_id: this.OAUTH2_CLIENT_ID,
 					scope: this.OAUTH2_SCOPES,
 					immediate:false
-				}, this.handleAuthResult.bind(this));
+				}, this.handleAuthResult.bind(this));*/
 			}else{
 				gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
 				
@@ -537,7 +548,6 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 			this.nextVideo();
 			break;
 		}
-		console.log(event);
 	},
 	playVideo:function(index){
 		this.index=index;
@@ -548,6 +558,11 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 	nextVideo:function(){
 		this.index++;
 		if(this.index>this.playlist.length-1)this.index=0;
+		this.playVideo(this.index);
+	},
+	previousVideo:function(){
+		this.index--;
+		if(this.index<0)this.index=this.playlist.length-1;
 		this.playVideo(this.index);
 	},
 	updatePlaylist:function(items){

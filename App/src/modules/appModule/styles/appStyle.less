@@ -7,11 +7,11 @@ html,body
 	height: 100%;
 	overflow: hidden;
 	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 h1.home {
 	position: absolute;
@@ -33,7 +33,7 @@ h1.home {
 }
 .logo
 {
-	 text-shadow: 1px 1px #121212;
+	text-shadow: 1px 1px #121212;
 	color: #ff5811;
 	display: inline-block;
 	font-family: 'Righteous', cursive;
@@ -51,6 +51,48 @@ h1.home {
 	left:0;
 	right:0;
 	position: absolute;
+	text-align: center;
+	img{
+		margin-top: 10%;
+	}
+	p
+	{
+		width: 80%;
+		margin-left: 10%;
+		margin-top: 10px;
+		line-height: 12px;
+	}
+}
+.footer
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: calc(100% - 300px);
+	background-color: #375a7f;
+	height: 40px;
+	text-align: right;
+	.youtube{
+		margin-top: -5px;
+		width: 175px;
+	}
+	.controls
+	{
+		position: absolute;
+		top: 10px;
+		left: 10px;
+
+		div
+		{
+			display: inline-block;
+			cursor: pointer;
+			&:hover
+			{
+				color: #ff5811;
+			}
+			
+		}
+	} 
 }
 @media (min-width: 1200px)
 {
@@ -78,4 +120,7 @@ h1.home {
 }
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #375a7f;
+}
+.btn{
+	background-color: #ff5811;
 }

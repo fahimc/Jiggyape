@@ -39,7 +39,6 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 			this.nextVideo();
 			break;
 		}
-		console.log(event);
 	},
 	playVideo:function(index){
 		this.index=index;
@@ -50,6 +49,11 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 	nextVideo:function(){
 		this.index++;
 		if(this.index>this.playlist.length-1)this.index=0;
+		this.playVideo(this.index);
+	},
+	previousVideo:function(){
+		this.index--;
+		if(this.index<0)this.index=this.playlist.length-1;
 		this.playVideo(this.index);
 	},
 	updatePlaylist:function(items){

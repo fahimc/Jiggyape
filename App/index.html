@@ -1,6 +1,7 @@
 <html ng-app="." ng-controller="appController">
 <head>
 	<title ng-bind="appName"></title>
+	<link rel="stylesheet" type="text/css" href="resource/fonts/fontello/css/fontello.css">
 	<script type="text/javascript">
 	window.youtubeReady = false;
 	window.googleApiClientReady=function(){
@@ -17,6 +18,15 @@
 </head>
 <body>
 	<app-view></app-view>
-	<div class="placeholder" ng-hide="appReady"><button class="btn btn-default" ng-click="onAuthClick()">Allow Jiggyape</button></div>
+	<div class="placeholder" ng-hide="appReady">
+		<img src="resource/images/logo.png">
+		<div ng-if="needAuth">
+		<p>Jiggyape now requires you to login this app using your google account.<br><br>
+			This is due to changes in Youtubes API. <br><br><b>Jiggyape is still free!</b>
+		</p>
+		<button class="btn btn-default" ng-click="onAuthClick()">Login with Google</button>
+		<a href="https://accounts.google.com/SignUp">sign up</a>
+	</div>
+	</div>
 </body>
 </html>

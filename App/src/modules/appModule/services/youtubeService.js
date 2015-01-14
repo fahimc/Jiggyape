@@ -32,14 +32,14 @@ angular.module('app').factory('youtubeService',function($rootScope){
 			
 		},
 		handleAuthResult:function(result){
-			if(result & result.error)
+			if(result && result.error)
 			{
 				this.authCallback();
-				gapi.auth.authorize({
+				/*gapi.auth.authorize({
 					client_id: this.OAUTH2_CLIENT_ID,
 					scope: this.OAUTH2_SCOPES,
 					immediate:false
-				}, this.handleAuthResult.bind(this));
+				}, this.handleAuthResult.bind(this));*/
 			}else{
 				gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
 				
