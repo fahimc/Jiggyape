@@ -10,10 +10,11 @@ angular.module('list').controller('listController',function($scope,youtubeServic
 		onResults:function(event,data){
 			$scope.results = data.results;
 			console.log($scope.results);
-			$scope.$apply();
+			 if (!$scope.$$phase) $scope.$apply();
 		},
-		onItemClick:function(id){
-			console.log('id',id);
+		onItemClick:function(item){
+			console.log('item',item);
+			$rootScope.$broadcast('ADD_TO_PLAYLIST',{item:item});
 		}
 
 	};

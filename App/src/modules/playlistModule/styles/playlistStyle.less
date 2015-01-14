@@ -1,0 +1,44 @@
+.playlist
+{
+width:300px;
+position: absolute;
+right: 0;
+top: 0;
+bottom: 200px;
+background-color: #333;
+ overflow: auto;
+thead
+{
+	border-bottom: 1px solid #222;
+}
+
+tbody{
+	font-size: 12px;
+}
+td p
+{
+	width: calc(100% - 20px);
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: middle;
+
+	&.selected
+	{
+		color: #ff5811;
+	}
+}
+td div
+{
+	margin-left: 10px;
+	vertical-align: top;
+	width: 10px;
+	display: inline-block;
+	cursor: pointer;
+	color:#ccc;
+
+	&:hover
+	{
+		color:#fff;
+	}
+}
+}

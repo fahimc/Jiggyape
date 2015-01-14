@@ -1,0 +1,12 @@
+<div class="playlist">
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Playlist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in items track by $index" ng-click="playItem($index)" data-index="{{$index}}"><td><p class="{{itemClass[$index]}}">{{item.snippet.title}}</p><div ng-click="removeItem($index,$event)">x</div></td></tr>
+</tbody>
+</table>
+</div>

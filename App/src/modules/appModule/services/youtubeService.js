@@ -43,18 +43,21 @@ angular.module('app').factory('youtubeService',function($rootScope){
 			gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
 		},
 		onYoutubeLoaded:function(){
-			
+			console.log('onYoutubeLoaded');
+			$rootScope.$broadcast('YoutubeLoaded');
 		},
 		search:function(value,callback){
 			var request = gapi.client.youtube.search.list({
 				q: value,
 				part: 'snippet',
 				type:'video',
+				videoEmbeddable:true,
 				maxResults:50
 			});
 
 			request.execute(function(response) {
 				//youtubeService.resultsCollection =response.result; 
+				console.log("response",response);
 				$rootScope.$broadcast('RESULTS',{results:response.result.items});
 				//callback(response.result);
 			});

@@ -1,17 +1,24 @@
 <html ng-app="." ng-controller="appController">
-	<head>
-		<title ng-bind="appName"></title>
-		<script type="text/javascript">
-			window.youtubeReady = false;
-			window.googleApiClientReady=function(){
-				youtubeReady=true;
-			}
-		</script>
-		<script src="//apis.google.com/js/client.js?onload=googleApiClientReady"></script>
-	<link type="text/css" rel="stylesheet" href="resource/css/app.css" />
+<head>
+	<title ng-bind="appName"></title>
+	<script type="text/javascript">
+	window.youtubeReady = false;
+	window.googleApiClientReady=function(){
+		youtubeReady=true;
+	}
+	window.playerReady=false;
+	window.onYouTubeIframeAPIReady=function() {
+		playerReady=true;
+		
+	}
+	</script>
+	<script src="//apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+	<script src="https://www.youtube.com/iframe_api"></script>
+<link type="text/css" rel="stylesheet" href="resource/css/app.css" />
 <script type="text/javascript" src="js/app.js"></script>
 </head>
-	<body>
-	  <app-view></app-view>
-	</body>
+<body>
+	<app-view></app-view>
+	<div class="placeholder" ng-hide="appReady"></div>
+</body>
 </html>

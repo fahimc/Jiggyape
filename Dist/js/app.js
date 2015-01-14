@@ -235,13 +235,33 @@ angular.module('list', []);
 'use strict';
 angular.module('nav', []);
 
-var app = angular.module('.', ['ngRoute', 'app','nav','list']);app.config(['$routeProvider',	function ($routeProvider) {		$routeProvider.when('/', {			controller: 'appController',			templateUrl: 'src/modules/appModule/templates/home.html'		})		.otherwise({			redirectTo: '/'		});	}]);
+'use strict';
+angular.module('player', []);
+
+'use strict';
+angular.module('playlist', []);
+
+var app = angular.module('.', ['ngRoute', 'app','nav','list','playlist','player']);app.config(['$routeProvider',	function ($routeProvider) {		$routeProvider.when('/', {			controller: 'appController',			templateUrl: 'src/modules/appModule/templates/home.html'		})		.otherwise({			redirectTo: '/'		});	}]);
 'use strict';
 
 app.controller('appController', function ($scope, $rootScope,youtubeService) {
-	$scope.appName = 'Base Structure';
-
-});
+	$scope.appName = 'Jiggyape';
+	var ready=[];
+	$rootScope.$on('YoutubePlayerLoaded',function(){
+		ready.push(true);
+		check();
+	});
+	$rootScope.$on('YoutubeLoaded',function(){
+		ready.push(true);
+		check();
+	});
+	function check(){
+		if(ready.length>1){
+			$scope.appReady=true;
+			if (!$scope.$$phase) $scope.$apply();
+		}
+	}
+})
 
 angular.module('app').directive('appView', function() {
 
@@ -309,18 +329,21 @@ angular.module('app').factory('youtubeService',function($rootScope){
 			gapi.client.load('youtube', 'v3',this.onYoutubeLoaded);
 		},
 		onYoutubeLoaded:function(){
-			
+			console.log('onYoutubeLoaded');
+			$rootScope.$broadcast('YoutubeLoaded');
 		},
 		search:function(value,callback){
 			var request = gapi.client.youtube.search.list({
 				q: value,
 				part: 'snippet',
 				type:'video',
+				videoEmbeddable:true,
 				maxResults:50
 			});
 
 			request.execute(function(response) {
 				//youtubeService.resultsCollection =response.result; 
+				console.log("response",response);
 				$rootScope.$broadcast('RESULTS',{results:response.result.items});
 				//callback(response.result);
 			});
@@ -347,10 +370,11 @@ angular.module('list').controller('listController',function($scope,youtubeServic
 		onResults:function(event,data){
 			$scope.results = data.results;
 			console.log($scope.results);
-			$scope.$apply();
+			 if (!$scope.$$phase) $scope.$apply();
 		},
-		onItemClick:function(id){
-			console.log('id',id);
+		onItemClick:function(item){
+			console.log('item',item);
+			$rootScope.$broadcast('ADD_TO_PLAYLIST',{item:item});
 		}
 
 	};
@@ -414,5 +438,174 @@ angular.module('nav').directive('nav', function () {
 
 		},
 		controller: 'navController'
+	}
+});
+
+'use strict';
+angular.module('player').controller('playerController',function($scope,youtubePlayerService){
+
+	var playerController=
+	{
+		init:function(){
+			youtubePlayerService.init();
+		}
+
+
+	};
+
+	playerController.init();
+
+	return playerController;
+
+});
+
+'use strict';
+
+angular.module('player').directive('player', function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: 'src/modules/playerModule/templates/player.html',
+		scope: {
+
+		},
+		controller: 'playerController'
+	}
+});
+
+'use strict';
+angular.module('player').factory('youtubePlayerService',function($rootScope){
+
+	var youtubePlayerService=
+	{
+		player:null,
+		playlist:[],
+		index:0,
+		init:function(){
+			if(window.playerReady)
+			{
+				console.log('ready');
+				this.player = new YT.Player('player', {
+					videoId: '',
+					playerVars: {
+						controls: 0,
+						autoplay: 1,
+						disablekb: 1,
+						enablejsapi: 1,
+						iv_load_policy: 3,
+						modestbranding: 0,
+						showinfo: 0
+					},events: {
+						'onReady': this.onPlayerReady.bind(this),
+						'onStateChange': this.onPlayerStateChange.bind(this)
+					}
+				});
+			}
+		},
+		onPlayerReady:function(event){
+			console.log('onPlayerReady');
+			$rootScope.$broadcast('YoutubePlayerLoaded');
+			if (!$rootScope.$$phase) $rootScope.$apply();
+		//	 event.target.playVideo();
+	},
+	onPlayerStateChange:function(event){
+		switch(event.data){
+			case 0:
+			this.nextVideo();
+			break;
+		}
+		console.log(event);
+	},
+	playVideo:function(index){
+		this.index=index;
+		if(this.index>this.playlist.length-1)this.index=0;
+		this.player.loadVideoById(this.playlist[this.index]);
+		$rootScope.$broadcast('PlayingVideo',{index:index});
+	},
+	nextVideo:function(){
+		this.index++;
+		if(this.index>this.playlist.length-1)this.index=0;
+		this.playVideo(this.index);
+	},
+	updatePlaylist:function(items){
+		this.playlist=[];
+		for(var a=0;a<items.length;a++){
+			this.playlist.push(items[a].id.videoId);
+		}
+
+	},
+
+
+
+};
+
+
+
+return youtubePlayerService;
+
+});
+
+'use strict';
+angular.module('playlist').controller('playlistController',function($scope,$rootScope,youtubePlayerService){
+
+	var playlistController=
+	{
+		currentIndex:0,
+		init:function(){
+			$scope.items=[];
+			$scope.itemClass=[];
+			$scope.playItem=this.playItem;
+			$scope.removeItem=this.removeItem;
+			$rootScope.$on('ADD_TO_PLAYLIST',this.onAdd.bind(this));
+			$rootScope.$on('PlayingVideo',this.onPlaying.bind(this));
+
+		},
+		onPlaying:function(event,data){
+			$scope.itemClass[this.currentIndex]="";
+			this.currentIndex=data.index;
+			$scope.itemClass[this.currentIndex]="selected";
+			console.log('this.currentIndex',data);
+			if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+		},
+		onAdd:function(event,data){
+			console.log(data);
+			$scope.items.push(data.item);
+			youtubePlayerService.updatePlaylist($scope.items);
+			 //if (!$scope.$$phase) $scope.$apply();
+		},
+		playItem:function(index){
+			console.log('play');
+			youtubePlayerService.playVideo(index);
+		},
+		removeItem:function(index,$event){
+			 $scope.items.splice(index, 1);
+			console.log('remove');
+			 youtubePlayerService.updatePlaylist($scope.items);
+			 youtubePlayerService.playVideo(index);
+
+			 $event.preventDefault();
+			 $event.stopPropagation();
+		}
+
+
+	};
+
+	playlistController.init();
+
+	return playlistController;
+
+});
+
+'use strict';
+
+angular.module('playlist').directive('playlist', function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		templateUrl: 'src/modules/playlistModule/templates/playlist.html',
+		scope: {
+
+		},
+		controller: 'playlistController'
 	}
 });
