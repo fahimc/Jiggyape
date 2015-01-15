@@ -2,17 +2,20 @@
 
 app.controller('appController', function ($scope, $rootScope,youtubeService,youtubePlayerService) {
 	$scope.appName = 'Jiggyape';
-	$rootScope.needAuth = false;
+	$scope.needAuth = false;
+	$scope.playClass="icon-play";
 	var ready=[];
 	youtubeService.authCallback=needAuthCallback;
+	youtubePlayerService.stateCallback=stateCallback;
+
 	$scope.onAuthClick=function(){
 		youtubeService.manualAuth();
 	}
 
 	function needAuthCallback(){
 		console.log('needAuth');
-		$rootScope.appReady=false;
-		$rootScope.needAuth=true;
+		$scope.appReady=true;
+		$scope.needAuth=true;
 		if (!$scope.$$phase) $scope.$apply();
 	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
@@ -23,9 +26,21 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		ready.push(true);
 		check();
 	});
-
-	$scope.playVideo=function(){
+	function stateCallback(state){
+		if(state==1){
+			$scope.playClass="icon-pause";
+		}else{
+			$scope.playClass="icon-play";
+		}
+		$scope.$apply();
+	}
+	$scope.playPauseVideo=function(){
+		if($scope.playClass=="icon-play")
+		{
 		youtubePlayerService.playVideo(youtubePlayerService.index);
+		}else{
+			youtubePlayerService.pauseVideo();
+		}
 	};
 
 	$scope.nextVideo=function(){
@@ -35,8 +50,8 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		youtubePlayerService.previousVideo();
 	};
 	function check(){
-		if(!$rootScope.needAuth && ready.length>1){
-			$rootScope.appReady=true;
+		if( ready.length>1){
+			$scope.appReady=false;
 			if (!$scope.$$phase) $scope.$apply();
 		}
 	}

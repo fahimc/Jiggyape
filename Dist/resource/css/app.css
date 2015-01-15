@@ -6714,7 +6714,7 @@ h1.home {
   margin-left: 20px;
 }
 .placeholder {
-  background-color: #375a7f;
+  background-color: rgba(0, 0, 0, 0.7);
   top: 0;
   bottom: 0;
   left: 0;
@@ -6729,7 +6729,19 @@ h1.home {
   width: 80%;
   margin-left: 10%;
   margin-top: 10px;
-  line-height: 12px;
+  line-height: 17px;
+}
+.placeholder .box {
+  background-color: #375a7f;
+  width: 30%;
+  height: 70%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+}
+.placeholder a {
+  color: #fff;
+  text-decoration: underline;
 }
 .footer {
   position: absolute;
@@ -6795,6 +6807,9 @@ h1.home {
   height: 50px;
   margin-right: 10px;
 }
+.list tr {
+  cursor: pointer;
+}
 .navbar {
   margin-bottom: 0;
 }
@@ -6832,6 +6847,9 @@ h1.home {
 }
 .playlist tbody {
   font-size: 12px;
+}
+.playlist tr {
+  cursor: pointer;
 }
 .playlist td p {
   width: calc(100% - 20px);

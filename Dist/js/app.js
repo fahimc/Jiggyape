@@ -246,17 +246,20 @@ var app = angular.module('.', ['ngRoute', 'app','nav','list','playlist','player'
 
 app.controller('appController', function ($scope, $rootScope,youtubeService,youtubePlayerService) {
 	$scope.appName = 'Jiggyape';
-	$rootScope.needAuth = false;
+	$scope.needAuth = false;
+	$scope.playClass="icon-play";
 	var ready=[];
 	youtubeService.authCallback=needAuthCallback;
+	youtubePlayerService.stateCallback=stateCallback;
+
 	$scope.onAuthClick=function(){
 		youtubeService.manualAuth();
 	}
 
 	function needAuthCallback(){
 		console.log('needAuth');
-		$rootScope.appReady=false;
-		$rootScope.needAuth=true;
+		$scope.appReady=true;
+		$scope.needAuth=true;
 		if (!$scope.$$phase) $scope.$apply();
 	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
@@ -267,9 +270,21 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		ready.push(true);
 		check();
 	});
-
-	$scope.playVideo=function(){
+	function stateCallback(state){
+		if(state==1){
+			$scope.playClass="icon-pause";
+		}else{
+			$scope.playClass="icon-play";
+		}
+		$scope.$apply();
+	}
+	$scope.playPauseVideo=function(){
+		if($scope.playClass=="icon-play")
+		{
 		youtubePlayerService.playVideo(youtubePlayerService.index);
+		}else{
+			youtubePlayerService.pauseVideo();
+		}
 	};
 
 	$scope.nextVideo=function(){
@@ -279,8 +294,8 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		youtubePlayerService.previousVideo();
 	};
 	function check(){
-		if(!$rootScope.needAuth && ready.length>1){
-			$rootScope.appReady=true;
+		if( ready.length>1){
+			$scope.appReady=false;
 			if (!$scope.$$phase) $scope.$apply();
 		}
 	}
@@ -368,7 +383,7 @@ angular.module('app').factory('youtubeService',function($rootScope){
 		},
 		search:function(value,callback){
 			var request = gapi.client.youtube.search.list({
-				q: value,
+				q: "music+"+value,
 				part: 'snippet',
 				type:'video',
 				videoEmbeddable:true,
@@ -512,9 +527,18 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 
 	var youtubePlayerService=
 	{
+		states:
+		{
+			UNSTARTED:-1,
+			ENDED:0,
+			PLAYING:1,
+			PAUSED:2
+		},
+		currentState:-1,
 		player:null,
 		playlist:[],
 		index:0,
+		stateCallback:null,
 		init:function(){
 			if(window.playerReady)
 			{
@@ -527,8 +551,9 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 						disablekb: 1,
 						enablejsapi: 1,
 						iv_load_policy: 3,
-						modestbranding: 0,
-						showinfo: 0
+						modestbranding: 1,
+						showinfo: 0,
+						rel:0
 					},events: {
 						'onReady': this.onPlayerReady.bind(this),
 						'onStateChange': this.onPlayerStateChange.bind(this)
@@ -548,12 +573,16 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 			this.nextVideo();
 			break;
 		}
+		if(this.stateCallback)this.stateCallback(event.data);
 	},
 	playVideo:function(index){
 		this.index=index;
 		if(this.index>this.playlist.length-1)this.index=0;
 		this.player.loadVideoById(this.playlist[this.index]);
 		$rootScope.$broadcast('PlayingVideo',{index:index});
+	},
+	pauseVideo:function(){
+		this.player.pauseVideo();
 	},
 	nextVideo:function(){
 		this.index++;

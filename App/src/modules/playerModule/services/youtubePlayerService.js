@@ -3,9 +3,18 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 
 	var youtubePlayerService=
 	{
+		states:
+		{
+			UNSTARTED:-1,
+			ENDED:0,
+			PLAYING:1,
+			PAUSED:2
+		},
+		currentState:-1,
 		player:null,
 		playlist:[],
 		index:0,
+		stateCallback:null,
 		init:function(){
 			if(window.playerReady)
 			{
@@ -18,8 +27,9 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 						disablekb: 1,
 						enablejsapi: 1,
 						iv_load_policy: 3,
-						modestbranding: 0,
-						showinfo: 0
+						modestbranding: 1,
+						showinfo: 0,
+						rel:0
 					},events: {
 						'onReady': this.onPlayerReady.bind(this),
 						'onStateChange': this.onPlayerStateChange.bind(this)
@@ -39,12 +49,16 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 			this.nextVideo();
 			break;
 		}
+		if(this.stateCallback)this.stateCallback(event.data);
 	},
 	playVideo:function(index){
 		this.index=index;
 		if(this.index>this.playlist.length-1)this.index=0;
 		this.player.loadVideoById(this.playlist[this.index]);
 		$rootScope.$broadcast('PlayingVideo',{index:index});
+	},
+	pauseVideo:function(){
+		this.player.pauseVideo();
 	},
 	nextVideo:function(){
 		this.index++;

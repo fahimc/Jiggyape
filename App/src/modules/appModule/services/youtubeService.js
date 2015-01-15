@@ -59,7 +59,7 @@ angular.module('app').factory('youtubeService',function($rootScope){
 		},
 		search:function(value,callback){
 			var request = gapi.client.youtube.search.list({
-				q: value,
+				q: "music+"+value,
 				part: 'snippet',
 				type:'video',
 				videoEmbeddable:true,

@@ -1,14 +1,26 @@
 <nav></nav>
 <div class="wrapper">
-<list></list>
-<playlist></playlist>
-<player></player>
-<div class="footer">
-	<div class="controls">
-		<div class="icon-fast-bw" ng-click="previousVideo()"></div>
-		<div class="icon-play" ng-click="playVideo()"></div>
-		<div class="icon-fast-fw" ng-click="nextVideo()"></div>
+	<list></list>
+	<playlist></playlist>
+	<player></player>
+	<div class="footer">
+		<div class="controls">
+			<div class="icon-fast-bw" ng-click="previousVideo()"></div>
+			<div ng-class="playClass" ng-click="playPauseVideo()"></div>
+			<div class="icon-fast-fw" ng-click="nextVideo()"></div>
+		</div>
+		<img class="youtube" src="resource/images/pwrdByYT-white.png">
 	</div>
-<img class="youtube" src="resource/images/pwrdByYT-white.png">
 </div>
+<div class="placeholder" ng-show="appReady">
+	<div class="box">
+		<img src="resource/images/logo.png">
+		<div ng-if="needAuth">
+			<p>Jiggyape now requires you to login this app using your google account.<br><br>
+				This is due to changes in Youtubes API. <br><br><b>Jiggyape is still free!</b>
+			</p><br>
+			<button class="btn btn-default" ng-click="onAuthClick()">Login with Google</button><br>
+			<a href="https://accounts.google.com/SignUp">sign up</a>
+		</div>
+	</div>
 </div>
