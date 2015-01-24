@@ -279,16 +279,18 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 
 	function needAuthCallback(){
 		console.log('needAuth');
-		$scope.appReady=true;
+		$scope.appReady=false;
 		$scope.needAuth=true;
 		if (!$scope.$$phase) $scope.$apply();
 	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
-		ready.push(true);
+		console.log('YoutubePlayerLoaded');
+		ready['player']=true;
 		check();
 	});
 	$rootScope.$on('YoutubeLoaded',function(){
-		ready.push(true);
+		console.log('YoutubeLoaded');
+		ready['api']=true;
 		check();
 	});
 	function stateCallback(state){
@@ -315,8 +317,8 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		youtubePlayerService.previousVideo();
 	};
 	function check(){
-		if( ready.length>1){
-			$scope.appReady=false;
+		if(ready['player'] && ready['api']){
+			$scope.appReady=true;
 			if (!$scope.$$phase) $scope.$apply();
 		}
 	}
@@ -466,23 +468,23 @@ angular.module('console').controller('consoleController',function($scope){
 
 			var old = console.log;
 			console.log = function(){
-				$scope.items.push(arguments[0]);
-				$scope.$apply();
+				$scope.items.push(arguments[0]+arguments[1]);
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				old.apply(this, arguments)
 			}
 			console.error = function(){
-				$scope.items.push(arguments[0]);
-				$scope.$apply();
+				$scope.items.push(arguments[0]+arguments[1]);
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				old.apply(this, arguments)
 			}
 			console.warn = function(){
-				$scope.items.push(arguments[0]);
-				$scope.$apply();
+				$scope.items.push(arguments[0]+arguments[1]);
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				old.apply(this, arguments)
 			}
 			console.info = function(){
-				$scope.items.push(arguments[0]);
-				$scope.$apply();
+				$scope.items.push(arguments[0]+arguments[1]);
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 				old.apply(this, arguments)
 			}
 		},
@@ -585,6 +587,8 @@ angular.module('nav').controller('navController',function($scope,youtubeService)
 				if($scope.isMobile)$scope.mobileView="search";
 				youtubeService.search($scope.searchValue,this.onResults.bind(this));
 				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+				document.getElementById('searchInput').focus();
+				document.getElementById('searchInput').blur();
 			}
 
 		},
@@ -665,6 +669,7 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 		playlist:[],
 		index:0,
 		stateCallback:null,
+		bufferTimer:null,
 		init:function(){
 			if(window.playerReady)
 			{
@@ -694,18 +699,28 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 		//	 event.target.playVideo();
 	},
 	onPlayerStateChange:function(event){
+		console.log('player service',event.data);
 		switch(event.data){
 			case 0:
 			this.nextVideo();
 			break;
+			case 3:
+			if(this.bufferTimer)clearTimeout(this.bufferTimer);
+			if(!this.bufferTimer)this.bufferTimer= setTimeout(this.bufferTimeout.bind(this),2000);
+			break;
 		}
 		if(this.stateCallback)this.stateCallback(event.data);
+	},
+	bufferTimeout:function(){
+		this.playVideo(this.index);
 	},
 	playVideo:function(index){
 		this.index=index;
 		if(this.index>this.playlist.length-1)this.index=0;
 		this.player.loadVideoById(this.playlist[this.index]);
+		console.log(this.playlist[this.index]);
 		$rootScope.$broadcast('PlayingVideo',{index:index});
+
 	},
 	pauseVideo:function(){
 		this.player.pauseVideo();
