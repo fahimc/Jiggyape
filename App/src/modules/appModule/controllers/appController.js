@@ -4,12 +4,30 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 	$scope.appName = 'Jiggyape';
 	$scope.needAuth = false;
 	$scope.playClass="icon-play";
+	$scope.isMobile=false;
+	$scope.windowWidth=0;
+	$scope.mobileView='playlist';
 	var ready=[];
 	youtubeService.authCallback=needAuthCallback;
 	youtubePlayerService.stateCallback=stateCallback;
+	
+	window.addEventListener('resize',onResize);
+	document.body.addEventListener('contextmenu',onContextMenu);
+
+	createStorage();
+	onResize();
 
 	$scope.onAuthClick=function(){
 		youtubeService.manualAuth();
+	}
+
+	$scope.mobileTabClass=function(name){
+			if($scope.mobileView==name)return 'selected';
+			return '';
+	}
+
+	$scope.mobileTabClick=function(name){
+			$scope.mobileView=name;
 	}
 
 	function needAuthCallback(){
@@ -37,7 +55,7 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 	$scope.playPauseVideo=function(){
 		if($scope.playClass=="icon-play")
 		{
-		youtubePlayerService.playVideo(youtubePlayerService.index);
+			youtubePlayerService.playVideo(youtubePlayerService.index);
 		}else{
 			youtubePlayerService.pauseVideo();
 		}
@@ -53,6 +71,31 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		if( ready.length>1){
 			$scope.appReady=false;
 			if (!$scope.$$phase) $scope.$apply();
+		}
+	}
+	function createStorage(){
+		if(typeof(localStorage) !== "undefined") {
+			var storedList  = localStorage.getItem('JiggyapePlaylist');
+			if(!storedList)
+				storedList  = localStorage.setItem('JiggyapePlaylist',JSON.stringify([]));
+		} 
+	}
+	function onContextMenu(event){
+		event.stopPropagation();
+		event.preventDefault();
+		return false;
+	}
+	function onResize(event){
+
+		$scope.windowWidth=window.innerWidth;	
+		if(window.innerWidth<=480)
+		{
+			$scope.isMobile=true;	
+		}else{
+			$scope.isMobile=false;	
+		}
+		if(!$scope.$$phase) {
+			$scope.$apply();
 		}
 	}
 })

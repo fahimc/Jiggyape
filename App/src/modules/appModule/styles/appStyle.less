@@ -24,10 +24,20 @@ h1.home {
 	text-align: center;
 	font-size: 40px;
 }
+.view
+{
+	display: -webkit-flex; /* Safari */
+    display: flex;
+     -webkit-flex-direction: column;
+   flex-direction: column;
+   height: 100%;
+   width: 100%;
+}
 .wrapper
 {
+	flex-grow: 1;
 	position: relative;
-	height: calc(100% - 60px);
+	/*height: calc(100% - 60px);*/
 	width: 100%;
 	overflow: hidden;
 }
@@ -107,6 +117,35 @@ h1.home {
 		}
 	} 
 }
+/*MOBILE*/
+.mobile-nav
+{
+	display: -webkit-flex; /* Safari */
+    display: flex;
+	list-style: none;
+	padding: 0;
+	li
+	{
+		text-align: center;
+		padding: 5px;
+		flex:1;
+		width: 50%;
+		cursor: pointer;
+		&:hover
+		{
+			background-color: #333;
+		}
+
+		&.selected
+		{
+			background-color: #333;
+		}
+	}
+	li:first-child
+	{
+		border-right: 1px solid #121212;
+	}
+}
 @media (min-width: 1200px)
 {
 	.logo
@@ -115,6 +154,12 @@ h1.home {
 		margin-top: 20px;
 	}
 }
+@media only screen and (max-width : 480px) {
+	.footer
+{
+	display: none;
+}
+	}
 
 ::-webkit-scrollbar {
 	width: 12px;

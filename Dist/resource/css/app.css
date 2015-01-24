@@ -6696,9 +6696,19 @@ h1.home {
   text-align: center;
   font-size: 40px;
 }
+.view {
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
 .wrapper {
+  flex-grow: 1;
   position: relative;
-  height: calc(100% - 60px);
+  /*height: calc(100% - 60px);*/
   width: 100%;
   overflow: hidden;
 }
@@ -6768,10 +6778,39 @@ h1.home {
 .footer .controls div:hover {
   color: #ff5811;
 }
+/*MOBILE*/
+.mobile-nav {
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.mobile-nav li {
+  text-align: center;
+  padding: 5px;
+  flex: 1;
+  width: 50%;
+  cursor: pointer;
+}
+.mobile-nav li:hover {
+  background-color: #333;
+}
+.mobile-nav li.selected {
+  background-color: #333;
+}
+.mobile-nav li:first-child {
+  border-right: 1px solid #121212;
+}
 @media (min-width: 1200px) {
   .logo {
     vertical-align: top;
     margin-top: 20px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .footer {
+    display: none;
   }
 }
 ::-webkit-scrollbar {
@@ -6801,6 +6840,10 @@ h1.home {
   bottom: 40px;
   width: calc(100% - 300px);
   overflow: auto;
+  background-color: #333;
+}
+.list tbody {
+  font-size: 12px;
 }
 .list img {
   width: 50px;
@@ -6810,6 +6853,13 @@ h1.home {
 .list tr {
   cursor: pointer;
 }
+@media only screen and (max-width: 480px) {
+  .list {
+    width: 100%;
+    bottom: 200px;
+    top: 30px;
+  }
+}
 .navbar {
   margin-bottom: 0;
 }
@@ -6817,6 +6867,9 @@ h1.home {
   vertical-align: top;
 }
 .navbar-form {
+  margin-left: 15px;
+  margin-right: 0px;
+  padding: 0;
   float: none !important;
   display: inline-block;
   width: 30%;
@@ -6826,12 +6879,51 @@ h1.home {
 .navbar-form input {
   width: 100% !important;
 }
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .navbar .logo {
+    width: 98px;
+    margin-top: 15px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .navbar .logo {
+    width: 140px;
+    margin-top: 8px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  /* Styles */
+  .navbar {
+    text-align: center;
+  }
+  .navbar img {
+    vertical-align: top;
+  }
+  .navbar .youtube {
+    width: 175px;
+  }
+  .navbar-form {
+    display: block;
+    width: 90%;
+    margin-left: 5%;
+  }
+}
 .player {
   width: 300px;
   height: 200px;
   position: absolute;
   right: 0;
   bottom: 0;
+}
+@media only screen and (max-width: 480px) {
+  .player {
+    width: 100%;
+  }
 }
 .playlist {
   width: 300px;
@@ -6870,4 +6962,10 @@ h1.home {
 }
 .playlist td div:hover {
   color: #fff;
+}
+@media only screen and (max-width: 480px) {
+  .playlist {
+    width: 100%;
+    top: 30px;
+  }
 }

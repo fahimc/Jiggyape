@@ -1,7 +1,11 @@
-<nav></nav>
-<div class="wrapper">
-	<list></list>
-	<playlist></playlist>
+<nav is-mobile="isMobile" mobile-view="mobileView"></nav>
+<div class="wrapper" >
+	<ul class="mobile-nav" ng-if="isMobile">
+		<li ng-class="mobileTabClass('search')" ng-click="mobileTabClick('search')">Search</li>
+		<li ng-class="mobileTabClass('playlist')" ng-click="mobileTabClick('playlist')">Playlist</li>
+	</ul>
+	<list is-mobile="isMobile" mobile-view="mobileView"></list>
+	<playlist is-mobile="isMobile" mobile-view="mobileView"></playlist>
 	<player></player>
 	<div class="footer">
 		<div class="controls">

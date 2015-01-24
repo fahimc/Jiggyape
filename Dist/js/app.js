@@ -248,12 +248,30 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 	$scope.appName = 'Jiggyape';
 	$scope.needAuth = false;
 	$scope.playClass="icon-play";
+	$scope.isMobile=false;
+	$scope.windowWidth=0;
+	$scope.mobileView='playlist';
 	var ready=[];
 	youtubeService.authCallback=needAuthCallback;
 	youtubePlayerService.stateCallback=stateCallback;
+	
+	window.addEventListener('resize',onResize);
+	document.body.addEventListener('contextmenu',onContextMenu);
+
+	createStorage();
+	onResize();
 
 	$scope.onAuthClick=function(){
 		youtubeService.manualAuth();
+	}
+
+	$scope.mobileTabClass=function(name){
+			if($scope.mobileView==name)return 'selected';
+			return '';
+	}
+
+	$scope.mobileTabClick=function(name){
+			$scope.mobileView=name;
 	}
 
 	function needAuthCallback(){
@@ -281,7 +299,7 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 	$scope.playPauseVideo=function(){
 		if($scope.playClass=="icon-play")
 		{
-		youtubePlayerService.playVideo(youtubePlayerService.index);
+			youtubePlayerService.playVideo(youtubePlayerService.index);
 		}else{
 			youtubePlayerService.pauseVideo();
 		}
@@ -297,6 +315,31 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		if( ready.length>1){
 			$scope.appReady=false;
 			if (!$scope.$$phase) $scope.$apply();
+		}
+	}
+	function createStorage(){
+		if(typeof(localStorage) !== "undefined") {
+			var storedList  = localStorage.getItem('JiggyapePlaylist');
+			if(!storedList)
+				storedList  = localStorage.setItem('JiggyapePlaylist',JSON.stringify([]));
+		} 
+	}
+	function onContextMenu(event){
+		event.stopPropagation();
+		event.preventDefault();
+		return false;
+	}
+	function onResize(event){
+
+		$scope.windowWidth=window.innerWidth;	
+		if(window.innerWidth<=480)
+		{
+			$scope.isMobile=true;	
+		}else{
+			$scope.isMobile=false;	
+		}
+		if(!$scope.$$phase) {
+			$scope.$apply();
 		}
 	}
 })
@@ -414,16 +457,23 @@ angular.module('list').controller('listController',function($scope,youtubeServic
 	{
 		init:function(){
 			$scope.onItemClick=this.onItemClick.bind(this);
+			$scope.hideView=this.hideView.bind(this);
 			$rootScope.$on('RESULTS',this.onResults.bind(this));
 		},
 		onResults:function(event,data){
 			$scope.results = data.results;
-			console.log($scope.results);
 			 if (!$scope.$$phase) $scope.$apply();
 		},
 		onItemClick:function(item){
-			console.log('item',item);
 			$rootScope.$broadcast('ADD_TO_PLAYLIST',{item:item});
+		},
+		hideView:function(){
+			if($scope.mobileView=="playlist" && $scope.isMobile)
+			{
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 	};
@@ -442,7 +492,8 @@ angular.module('list').directive('list', function () {
 		replace: true,
 		templateUrl: 'src/modules/listModule/templates/list.html',
 		scope: {
-
+			mobileView:"=",
+			isMobile:"="
 		},
 		controller: 'listController'
 	}
@@ -459,7 +510,9 @@ angular.module('nav').controller('navController',function($scope,youtubeService)
 		onKey:function($event){
 			if($event.keyCode==13)
 			{
+				if($scope.isMobile)$scope.mobileView="search";
 				youtubeService.search($scope.searchValue,this.onResults.bind(this));
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 			}
 
 		},
@@ -484,7 +537,8 @@ angular.module('nav').directive('nav', function () {
 		replace: true,
 		templateUrl: 'src/modules/navModule/templates/nav.html',
 		scope: {
-
+			isMobile:"=",
+			mobileView:"="
 		},
 		controller: 'navController'
 	}
@@ -622,36 +676,53 @@ angular.module('playlist').controller('playlistController',function($scope,$root
 			$scope.items=[];
 			$scope.itemClass=[];
 			$scope.playItem=this.playItem;
-			$scope.removeItem=this.removeItem;
+			$scope.removeItem=this.removeItem.bind(this);
+			$scope.isMobileView=this.isMobileView.bind(this);
 			$rootScope.$on('ADD_TO_PLAYLIST',this.onAdd.bind(this));
 			$rootScope.$on('PlayingVideo',this.onPlaying.bind(this));
 
+			if(typeof(localStorage) !== "undefined") {
+				$scope.items = JSON.parse(localStorage.getItem('JiggyapePlaylist'));
+				youtubePlayerService.updatePlaylist($scope.items);			
+			} 
+
+		},
+		isMobileView:function(){
+			if($scope.isMobile && $scope.mobileView!="playlist")
+			{
+				return true;
+			}
+			return false;
 		},
 		onPlaying:function(event,data){
 			$scope.itemClass[this.currentIndex]="";
 			this.currentIndex=data.index;
 			$scope.itemClass[this.currentIndex]="selected";
-			console.log('this.currentIndex',data);
+			//console.log('this.currentIndex',data);
 			if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 		},
 		onAdd:function(event,data){
-			console.log(data);
 			$scope.items.push(data.item);
 			youtubePlayerService.updatePlaylist($scope.items);
-			 //if (!$scope.$$phase) $scope.$apply();
+			this.updateStorage();
 		},
 		playItem:function(index){
 			console.log('play');
 			youtubePlayerService.playVideo(index);
 		},
 		removeItem:function(index,$event){
-			 $scope.items.splice(index, 1);
-			console.log('remove');
-			 youtubePlayerService.updatePlaylist($scope.items);
-			 youtubePlayerService.playVideo(index);
-
-			 $event.preventDefault();
-			 $event.stopPropagation();
+			$scope.items.splice(index, 1);
+			//console.log('remove');
+			youtubePlayerService.updatePlaylist($scope.items);
+			youtubePlayerService.playVideo(index);
+			this.updateStorage();
+			$event.preventDefault();
+			$event.stopPropagation();
+		},
+		updateStorage:function(){
+			if(typeof(localStorage) !== "undefined") {
+				localStorage.setItem('JiggyapePlaylist',JSON.stringify($scope.items));			
+			} 
 		}
 
 
@@ -671,7 +742,8 @@ angular.module('playlist').directive('playlist', function () {
 		replace: true,
 		templateUrl: 'src/modules/playlistModule/templates/playlist.html',
 		scope: {
-
+			isMobile:'=',
+			mobileView:'='
 		},
 		controller: 'playlistController'
 	}

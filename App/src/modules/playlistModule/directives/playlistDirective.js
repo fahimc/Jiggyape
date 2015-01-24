@@ -6,7 +6,8 @@ angular.module('playlist').directive('playlist', function () {
 		replace: true,
 		templateUrl: 'src/modules/playlistModule/templates/playlist.html',
 		scope: {
-
+			isMobile:'=',
+			mobileView:'='
 		},
 		controller: 'playlistController'
 	}

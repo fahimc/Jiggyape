@@ -9,7 +9,9 @@ angular.module('nav').controller('navController',function($scope,youtubeService)
 		onKey:function($event){
 			if($event.keyCode==13)
 			{
+				if($scope.isMobile)$scope.mobileView="search";
 				youtubeService.search($scope.searchValue,this.onResults.bind(this));
+				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
 			}
 
 		},

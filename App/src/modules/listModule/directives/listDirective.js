@@ -6,7 +6,8 @@ angular.module('list').directive('list', function () {
 		replace: true,
 		templateUrl: 'src/modules/listModule/templates/list.html',
 		scope: {
-
+			mobileView:"=",
+			isMobile:"="
 		},
 		controller: 'listController'
 	}

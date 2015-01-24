@@ -1,5 +1,6 @@
  <div class="navbar navbar-default">
- 	<img src="resource/images/logo.png">
+ 	<img class="logo" src="resource/images/logo.png">
+ 	<img ng-if="isMobile" class="youtube" src="resource/images/pwrdByYT-white.png">
     <form class="navbar-form navbar-left">
       <input type="text" class="form-control col-lg-8" placeholder="Search" ng-model="searchValue" ng-keyup="onKey($event)">
     </form>

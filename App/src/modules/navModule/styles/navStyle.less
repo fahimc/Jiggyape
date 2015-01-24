@@ -1,5 +1,6 @@
 .navbar
 {
+
 	margin-bottom: 0;
 
 	img {
@@ -8,14 +9,63 @@
 }
 .navbar-form
 {
+	margin-left: 15px; 
+	margin-right: 0px; 
+	padding: 0; 
 	float: none !important;
 	display: inline-block;
 	width: 30%;
 	border: 0;
-box-shadow: none;
+	box-shadow: none;
 
-}
- .navbar-form input
+	input
 	{
 		width: 100% !important;
 	}
+}
+@media (min-width: 768px) {
+	.navbar {
+		border-radius: 0px;
+	}
+}
+@media only screen and (max-width : 320px) {
+	.navbar
+	{
+		.logo
+		{
+			width: 98px;
+			margin-top: 15px;
+		}
+	}
+}
+@media only screen and  (min-width : 320px) and (max-width : 480px) 
+{
+	.navbar
+	{
+		.logo
+		{
+			width: 140px;
+			margin-top: 8px;
+		}
+	}
+}
+@media only screen and (max-width : 480px) {
+	/* Styles */
+	.navbar
+	{
+		text-align: center;
+		img {
+			vertical-align: top;
+		}
+		.youtube
+		{
+			width:175px;
+		}
+	}
+	.navbar-form
+	{
+		display: block;
+		width: 90%;
+		margin-left: 5%;
+	}
+}
