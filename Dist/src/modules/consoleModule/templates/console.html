@@ -1,0 +1,10 @@
+<div class="console">
+<button ng-click="onClick()">{{buttonLabel}}</button>
+<div ng-if="showConsole" class="console-view">
+	<ul>
+		<li ng-repeat="item in items track by $index">
+			{{item}}
+		</li>
+	</ul>
+</div>
+</div>

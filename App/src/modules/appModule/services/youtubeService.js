@@ -68,7 +68,7 @@ angular.module('app').factory('youtubeService',function($rootScope){
 
 			request.execute(function(response) {
 				//youtubeService.resultsCollection =response.result; 
-				console.log("response",response);
+				//console.log("response",response);
 				$rootScope.$broadcast('RESULTS',{results:response.result.items});
 				//callback(response.result);
 			});

@@ -4,6 +4,7 @@ angular.module('nav').controller('navController',function($scope,youtubeService)
 	var navController=
 	{
 		init:function(){
+			$scope.searchValue="";
 			$scope.onKey=this.onKey.bind(this);
 		},
 		onKey:function($event){
