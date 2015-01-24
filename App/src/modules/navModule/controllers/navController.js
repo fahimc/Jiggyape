@@ -13,6 +13,8 @@ angular.module('nav').controller('navController',function($scope,youtubeService)
 				if($scope.isMobile)$scope.mobileView="search";
 				youtubeService.search($scope.searchValue,this.onResults.bind(this));
 				if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
+				document.getElementById('searchInput').focus();
+				document.getElementById('searchInput').blur();
 			}
 
 		},

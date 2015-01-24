@@ -32,16 +32,18 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 
 	function needAuthCallback(){
 		console.log('needAuth');
-		$scope.appReady=true;
+		$scope.appReady=false;
 		$scope.needAuth=true;
 		if (!$scope.$$phase) $scope.$apply();
 	}
 	$rootScope.$on('YoutubePlayerLoaded',function(){
-		ready.push(true);
+		console.log('YoutubePlayerLoaded');
+		ready['player']=true;
 		check();
 	});
 	$rootScope.$on('YoutubeLoaded',function(){
-		ready.push(true);
+		console.log('YoutubeLoaded');
+		ready['api']=true;
 		check();
 	});
 	function stateCallback(state){
@@ -68,8 +70,8 @@ app.controller('appController', function ($scope, $rootScope,youtubeService,yout
 		youtubePlayerService.previousVideo();
 	};
 	function check(){
-		if( ready.length>1){
-			$scope.appReady=false;
+		if(ready['player'] && ready['api']){
+			$scope.appReady=true;
 			if (!$scope.$$phase) $scope.$apply();
 		}
 	}

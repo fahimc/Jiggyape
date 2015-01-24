@@ -15,6 +15,7 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 		playlist:[],
 		index:0,
 		stateCallback:null,
+		bufferTimer:null,
 		init:function(){
 			if(window.playerReady)
 			{
@@ -44,18 +45,28 @@ angular.module('player').factory('youtubePlayerService',function($rootScope){
 		//	 event.target.playVideo();
 	},
 	onPlayerStateChange:function(event){
+		console.log('player service',event.data);
 		switch(event.data){
 			case 0:
 			this.nextVideo();
 			break;
+			case 3:
+			if(this.bufferTimer)clearTimeout(this.bufferTimer);
+			if(!this.bufferTimer)this.bufferTimer= setTimeout(this.bufferTimeout.bind(this),2000);
+			break;
 		}
 		if(this.stateCallback)this.stateCallback(event.data);
+	},
+	bufferTimeout:function(){
+		this.playVideo(this.index);
 	},
 	playVideo:function(index){
 		this.index=index;
 		if(this.index>this.playlist.length-1)this.index=0;
 		this.player.loadVideoById(this.playlist[this.index]);
+		console.log(this.playlist[this.index]);
 		$rootScope.$broadcast('PlayingVideo',{index:index});
+
 	},
 	pauseVideo:function(){
 		this.player.pauseVideo();
